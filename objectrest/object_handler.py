@@ -1,6 +1,4 @@
-import requests
-
-from objectrest import json_handler
+from objectrest.json_handler import *
 
 
 def _create_object(json_data: dict, model: type):
@@ -38,7 +36,7 @@ def get_object(url: str, model: type, session: requests.Session = None, **kwargs
     :return: an object
     :rtype: object
     """
-    json_data = json_handler.get_json(url=url, session=session, **kwargs)
+    json_data = get_json(url=url, session=session, **kwargs)
     return _create_object(json_data=json_data, model=model)
 
 
@@ -57,7 +55,7 @@ def post_object(url: str, model: type, session: requests.Session = None, **kwarg
     :return: an object
     :rtype: object
     """
-    json_data = json_handler.post_json(url=url, session=session, **kwargs)
+    json_data = post_json(url=url, session=session, **kwargs)
     return _create_object(json_data=json_data, model=model)
 
 
@@ -76,7 +74,7 @@ def put_object(url: str, model: type, session: requests.Session = None, **kwargs
     :return: an object
     :rtype: object
     """
-    json_data = json_handler.put_json(url=url, session=session, **kwargs)
+    json_data = put_json(url=url, session=session, **kwargs)
     return _create_object(json_data=json_data, model=model)
 
 
@@ -95,7 +93,7 @@ def patch_object(url: str, model: type, session: requests.Session = None, **kwar
     :return: an object
     :rtype: object
     """
-    json_data = json_handler.patch_json(url=url, session=session, **kwargs)
+    json_data = patch_json(url=url, session=session, **kwargs)
     return _create_object(json_data=json_data, model=model)
 
 
@@ -114,5 +112,5 @@ def delete_object(url: str, model: type, session: requests.Session = None, **kwa
     :return: an object
     :rtype: object
     """
-    json_data = json_handler.delete_json(url=url, session=session, **kwargs)
+    json_data = delete_json(url=url, session=session, **kwargs)
     return _create_object(json_data=json_data, model=model)

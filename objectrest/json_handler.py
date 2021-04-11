@@ -1,6 +1,4 @@
-import requests
-
-from objectrest import base_requests
+from objectrest.base_requests import *
 
 
 def _parse_response_json(response: requests.Response = None) -> dict:
@@ -34,7 +32,7 @@ def get_json(url: str, session: requests.Session = None, **kwargs):
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = base_requests.get(url=url, session=session, **kwargs)
+    res = get(url=url, session=session, **kwargs)
     return _parse_response_json(response=res)
 
 
@@ -51,7 +49,7 @@ def post_json(url: str, session: requests.Session = None, **kwargs):
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = base_requests.post(url=url, session=session, **kwargs)
+    res = post(url=url, session=session, **kwargs)
     return _parse_response_json(response=res)
 
 
@@ -68,7 +66,7 @@ def put_json(url: str, session: requests.Session = None, **kwargs):
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = base_requests.put(url=url, session=session, **kwargs)
+    res = put(url=url, session=session, **kwargs)
     return _parse_response_json(response=res)
 
 
@@ -85,7 +83,7 @@ def patch_json(url: str, session: requests.Session = None, **kwargs):
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = base_requests.patch(url=url, session=session, **kwargs)
+    res = patch(url=url, session=session, **kwargs)
     return _parse_response_json(response=res)
 
 
@@ -102,5 +100,5 @@ def delete_json(url: str, session: requests.Session = None, **kwargs):
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = base_requests.delete(url=url, session=session, **kwargs)
+    res = delete(url=url, session=session, **kwargs)
     return _parse_response_json(response=res)

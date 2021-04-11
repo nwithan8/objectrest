@@ -1,6 +1,4 @@
-import requests
-
-from objectrest import base_requests, json_handler, object_handler
+from objectrest.object_handler import *
 from objectrest.decorators import request_handler_request
 
 
@@ -62,7 +60,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return base_requests.get(url=url, session=self._session, **kwargs)
+        return get(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def get_json(self, url: str, **kwargs):
@@ -77,7 +75,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return json_handler.get_json(url=url, session=self._session, **kwargs)
+        return get_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def get_object(self, url: str, model: type, **kwargs):
@@ -94,7 +92,7 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return object_handler.get_object(url=url, model=model, session=self._session, **kwargs)
+        return get_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
     def post(self, url: str, **kwargs):
@@ -109,7 +107,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return base_requests.post(url=url, session=self._session, **kwargs)
+        return post(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def post_json(self, url: str, **kwargs):
@@ -124,7 +122,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return json_handler.post_json(url=url, session=self._session, **kwargs)
+        return post_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def post_object(self, url: str, model: type, **kwargs):
@@ -141,7 +139,7 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return object_handler.post_object(url=url, model=model, session=self._session, **kwargs)
+        return post_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
     def put(self, url: str, **kwargs):
@@ -156,7 +154,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return base_requests.put(url=url, session=self._session, **kwargs)
+        return put(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def put_json(self, url: str, **kwargs):
@@ -171,7 +169,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return json_handler.put_json(url=url, session=self._session, **kwargs)
+        return put_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def put_object(self, url: str, model: type, **kwargs):
@@ -188,7 +186,7 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return object_handler.put_object(url=url, model=model, session=self._session, **kwargs)
+        return put_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
     def patch(self, url: str, **kwargs):
@@ -203,7 +201,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return base_requests.patch(url=url, session=self._session, **kwargs)
+        return patch(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def patch_json(self, url: str, **kwargs):
@@ -218,7 +216,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return json_handler.patch_json(url=url, session=self._session, **kwargs)
+        return patch_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def patch_object(self, url: str, model: type, **kwargs):
@@ -235,7 +233,7 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return object_handler.patch_object(url=url, model=model, session=self._session, **kwargs)
+        return patch_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
     def delete(self, url: str, **kwargs):
@@ -250,7 +248,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return base_requests.delete(url=url, session=self._session, **kwargs)
+        return delete(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def delete_json(self, url: str, **kwargs):
@@ -265,7 +263,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return json_handler.delete_json(url=url, session=self._session, **kwargs)
+        return delete_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
     def delete_object(self, url: str, model: type, **kwargs):
@@ -282,4 +280,4 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return object_handler.delete_object(url=url, model=model, session=self._session, **kwargs)
+        return delete_object(url=url, model=model, session=self._session, **kwargs)
