@@ -1,40 +1,37 @@
-# A Python client for Upgrade.Chat's API
-[![PyPi](https://static.pepy.tech/personalized-badge/tautulli?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pypi.org/project/tautulli)
-[![License](https://img.shields.io/pypi/l/tautulli?color=orange&style=flat-square)](https://github.com/nwithan8/pytulli/blob/master/LICENSE)
+# ObjectREST
+[![PyPi](https://static.pepy.tech/personalized-badge/objectrest?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pypi.org/project/objectrest)
+[![License](https://img.shields.io/pypi/l/tautulli?color=orange&style=flat-square)](https://github.com/nwithan8/objectrest/blob/master/LICENSE)
 
-[![Open Issues](https://img.shields.io/github/issues-raw/nwithan8/pytulli?color=gold&style=flat-square)](https://github.com/nwithan8/pytulli/issues?q=is%3Aopen+is%3Aissue)
-[![Closed Issues](https://img.shields.io/github/issues-closed-raw/nwithan8/pytulli?color=black&style=flat-square)](https://github.com/nwithan8/pytulli/issues?q=is%3Aissue+is%3Aclosed)
-[![Latest Release](https://img.shields.io/github/v/release/nwithan8/pytulli?color=red&label=latest%20release&logo=github&style=flat-square)](https://github.com/nwithan8/pytulli/releases)
+[![Open Issues](https://img.shields.io/github/issues-raw/nwithan8/objectrest?color=gold&style=flat-square)](https://github.com/nwithan8/objectrest/issues?q=is%3Aopen+is%3Aissue)
+[![Closed Issues](https://img.shields.io/github/issues-closed-raw/nwithan8/objectrest?color=black&style=flat-square)](https://github.com/nwithan8/objectrest/issues?q=is%3Aissue+is%3Aclosed)
+[![Latest Release](https://img.shields.io/github/v/release/nwithan8/objectrest?color=red&label=latest%20release&logo=github&style=flat-square)](https://github.com/nwithan8/objectrest/releases)
 
 [![Discord](https://img.shields.io/discord/472537215457689601?color=blue&logo=discord&style=flat-square)](https://discord.gg/7jGbCJQ)
 [![Twitter](https://img.shields.io/twitter/follow/nwithan8?label=%40nwithan8&logo=twitter&style=flat-square)](https://twitter.com/nwithan8)
 
-Interact with Tautulli's API in Python
+A Python package to handle REST API requests, JSON parsing, and pydantic object generation.
 
 # Installation
-From PyPi: ``python -m pip install tautulli``
+From PyPi: ``python -m pip install objectrest``
 
-From GitHub ``python -m pip install git+https://github.com/nwithan8/pytulli.git``
+From GitHub ``python -m pip install git+https://github.com/nwithan8/objectrest.git``
 
 # Usage
-This client covers nearly 100% of all Tautulli's available API calls, including type checks and enforcing required variables.
+This package acts as a middle-man between the user and the Requests library.
 
-More details about Tautulli's API can be found on the [Tautulli's GitHub wiki page](https://github.com/Tautulli/Tautulli-Wiki/wiki/Tautulli-API-Reference).
+Users can call to methods directly, or use the RequestHandler class to set universal parameters (i.e. API tokens), universal headers and/or a universal base URL for all requests
 
-Most API call functions that return data return raw JSON data. Some return strings or file contents (in the case of downloads).
+Users can retrieve the raw request, the JSON data from a request, or have the JSON data automatically parsed into a Pydantic model.
 
-API calls functions that do not return data return `True`/`False` booleans to confirm that the API call was successful.
-
-Import the ``tautulli`` package as initialize the API
 Example:
 ```python
-from tautulli.api import RawAPI
+from objectrest import RequestHandler
 
-api = RawAPI(base_url="http://myipaddress:port", api_key="thisisanapikey")
+requests = RequestHandler(base_url="http://rootoftheapi", universal_parameters={'api_key': "thisisanapikey"})
+
+my_object = requests.get_object(url="/object", model=MyObjectClass, params={"limit": 10})
 ```
-
-You can optionally pass ``verbose=True`` into the API declaration to produce verbose debugging logs and error messages.
 
 # Documentation
 
-Documentation available on [ReadTheDocs](https://pytulli.readthedocs.io/en/latest/documentation.html)
+Documentation available on [ReadTheDocs](https://objectrest.readthedocs.io/en/latest/documentation.html)

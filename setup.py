@@ -1,5 +1,5 @@
 import setuptools
-from tautulli import __title__, __description__, __version__, __author__, __author_email__, __license__, __keywords__, __github_username__, __copyright__
+from objectrest import __info__ as package_info
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -8,20 +8,19 @@ with open("requirements.txt", 'r') as fh:
     requirements = fh.read().splitlines()
 
 setuptools.setup(
-    name=__title__,
+    name=package_info.__title__,
     packages=setuptools.find_packages(),
-    version=__version__,
-    license=__license__,
-    description=__description__,
+    version=package_info.__version__,
+    license=package_info.__license__,
+    description=package_info.__description__,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author=__author__,
-    author_email=__author_email__,
-    url=f'https://github.com/{__github_username__}/pytulli',
-    download_url=f'https://github.com/{__github_username__}/pytulli/archive/{__version__}.tar.gz',
-    keywords=__keywords__,
+    author=package_info.__author__,
+    author_email=package_info.__author_email__,
+    url=f'https://github.com/{package_info.__github_username__}/{package_info.__github_project_name__}',
+    download_url=f'https://github.com/{package_info.__github_username__}/{package_info.__github_project_name__}/archive/{package_info.__version__}.tar.gz',
+    keywords=package_info.__keywords__,
     install_requires=requirements,
-    # install_requires=['requests', 'pydantic'],
     classifiers=[
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Development Status :: 4 - Beta',
