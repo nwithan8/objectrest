@@ -25,9 +25,9 @@ Users can retrieve the raw request, the JSON data from a request, or have the JS
 
 Example:
 ```python
-from objectrest import RequestHandler
+from objectrest import requests
 
-requests = RequestHandler(base_url="http://rootoftheapi", universal_parameters={'api_key': "thisisanapikey"})
+requests = requests.RequestHandler(base_url="http://rootoftheapi", universal_parameters={'api_key': "thisisanapikey"})
 
 my_object = requests.get_object(url="/object", model=MyObjectClass, params={"limit": 10})
 ```
