@@ -19,7 +19,7 @@ def _parse_response_json(response: requests.Response = None) -> dict:
         return {}
 
 
-def get_json(url: str, session: requests.Session = None, **kwargs):
+def get_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     """
     Return the JSON data from a GET request
 
@@ -36,7 +36,7 @@ def get_json(url: str, session: requests.Session = None, **kwargs):
     return _parse_response_json(response=res)
 
 
-def post_json(url: str, session: requests.Session = None, **kwargs):
+def post_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     """
     Return the JSON data from a POST request
 
@@ -53,7 +53,7 @@ def post_json(url: str, session: requests.Session = None, **kwargs):
     return _parse_response_json(response=res)
 
 
-def put_json(url: str, session: requests.Session = None, **kwargs):
+def put_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     """
     Return the JSON data from a PUT request
 
@@ -70,7 +70,7 @@ def put_json(url: str, session: requests.Session = None, **kwargs):
     return _parse_response_json(response=res)
 
 
-def patch_json(url: str, session: requests.Session = None, **kwargs):
+def patch_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     """
     Return the JSON data from a PATCH request
 
@@ -87,7 +87,7 @@ def patch_json(url: str, session: requests.Session = None, **kwargs):
     return _parse_response_json(response=res)
 
 
-def delete_json(url: str, session: requests.Session = None, **kwargs):
+def delete_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     """
     Return the JSON data from a DELETE request
 
