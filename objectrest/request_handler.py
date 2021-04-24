@@ -12,7 +12,7 @@ class RequestHandler:
         self.headers = universal_headers
         self._session = requests.Session()
 
-    def _make_url(self, local_url: str):
+    def _make_url(self, local_url: str) -> str:
         if not self.base_url:
             return local_url
 
@@ -25,7 +25,7 @@ class RequestHandler:
 
         return f"{base}/{local_url}"
 
-    def _make_params(self, local_params: dict = None):
+    def _make_params(self, local_params: dict = None) -> dict:
         params = {}
 
         if self.params:
@@ -36,7 +36,7 @@ class RequestHandler:
 
         return params
 
-    def _make_headers(self, local_headers: dict = None):
+    def _make_headers(self, local_headers: dict = None) -> dict:
         headers = {}
 
         if self.headers:
@@ -48,7 +48,7 @@ class RequestHandler:
         return headers
 
     @request_handler_request
-    def get(self, url: str, **kwargs):
+    def get(self, url: str, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a GET request
         Automatically appends base URL, universal params and headers, reuses session
@@ -63,7 +63,7 @@ class RequestHandler:
         return get(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def get_json(self, url: str, **kwargs):
+    def get_json(self, url: str, **kwargs) -> dict:
         """
         Return the JSON data from a GET request
         Automatically appends base URL, universal params and headers, reuses session
@@ -78,7 +78,7 @@ class RequestHandler:
         return get_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def get_object(self, url: str, model: type, **kwargs):
+    def get_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a GET request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -95,7 +95,7 @@ class RequestHandler:
         return get_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
-    def post(self, url: str, **kwargs):
+    def post(self, url: str, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a POST request
         Automatically appends base URL, universal params and headers, reuses session
@@ -110,7 +110,7 @@ class RequestHandler:
         return post(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def post_json(self, url: str, **kwargs):
+    def post_json(self, url: str, **kwargs) -> dict:
         """
         Return the JSON data from a POST request
         Automatically appends base URL, universal params and headers, reuses session
@@ -125,7 +125,7 @@ class RequestHandler:
         return post_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def post_object(self, url: str, model: type, **kwargs):
+    def post_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a POST request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -142,7 +142,7 @@ class RequestHandler:
         return post_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
-    def put(self, url: str, **kwargs):
+    def put(self, url: str, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a PUT request
         Automatically appends base URL, universal params and headers, reuses session
@@ -157,7 +157,7 @@ class RequestHandler:
         return put(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def put_json(self, url: str, **kwargs):
+    def put_json(self, url: str, **kwargs) -> dict:
         """
         Return the JSON data from a PUT request
         Automatically appends base URL, universal params and headers, reuses session
@@ -172,7 +172,7 @@ class RequestHandler:
         return put_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def put_object(self, url: str, model: type, **kwargs):
+    def put_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PUT request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -189,7 +189,7 @@ class RequestHandler:
         return put_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
-    def patch(self, url: str, **kwargs):
+    def patch(self, url: str, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a PATCH request
         Automatically appends base URL, universal params and headers, reuses session
@@ -204,7 +204,7 @@ class RequestHandler:
         return patch(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def patch_json(self, url: str, **kwargs):
+    def patch_json(self, url: str, **kwargs) -> dict:
         """
         Return the JSON data from a PATCH request
         Automatically appends base URL, universal params and headers, reuses session
@@ -219,7 +219,7 @@ class RequestHandler:
         return patch_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def patch_object(self, url: str, model: type, **kwargs):
+    def patch_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PATCH request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -236,7 +236,7 @@ class RequestHandler:
         return patch_object(url=url, model=model, session=self._session, **kwargs)
 
     @request_handler_request
-    def delete(self, url: str, **kwargs):
+    def delete(self, url: str, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a DELETE request
         Automatically appends base URL, universal params and headers, reuses session
@@ -251,7 +251,7 @@ class RequestHandler:
         return delete(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def delete_json(self, url: str, **kwargs):
+    def delete_json(self, url: str, **kwargs) -> dict:
         """
         Return the JSON data from a DELETE request
         Automatically appends base URL, universal params and headers, reuses session
@@ -266,7 +266,7 @@ class RequestHandler:
         return delete_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def delete_object(self, url: str, model: type, **kwargs):
+    def delete_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a DELETE request into an object
         Automatically appends base URL, universal params and headers, reuses session
