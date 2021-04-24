@@ -3,7 +3,7 @@ from typing import List
 from objectrest.json_handler import *
 
 
-def _create_object(json_data: dict, model: type, sub_keys: List = None):
+def _create_object(json_data: dict, model: type, sub_keys: List = None) -> Union[object, None]:
     """
     Parse JSON data into a Pydantic model
 
@@ -29,7 +29,7 @@ def _create_object(json_data: dict, model: type, sub_keys: List = None):
         return None
 
 
-def get_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs):
+def get_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a GET request into an object
 
@@ -50,7 +50,7 @@ def get_object(url: str, model: type, sub_keys: List = None, session: requests.S
     return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
 
 
-def post_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs):
+def post_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a POST request into an object
 
@@ -71,7 +71,7 @@ def post_object(url: str, model: type, sub_keys: List = None, session: requests.
     return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
 
 
-def put_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs):
+def put_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a PUT request into an object
 
@@ -92,7 +92,7 @@ def put_object(url: str, model: type, sub_keys: List = None, session: requests.S
     return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
 
 
-def patch_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs):
+def patch_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a PATCH request into an object
 
@@ -113,7 +113,7 @@ def patch_object(url: str, model: type, sub_keys: List = None, session: requests
     return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
 
 
-def delete_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs):
+def delete_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a DELETE request into an object
 
