@@ -1,7 +1,7 @@
 import requests
 
 
-def get(url: str, session: requests.Session = None, **kwargs):
+def get(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a GET request
 
@@ -21,7 +21,7 @@ def get(url: str, session: requests.Session = None, **kwargs):
     return res
 
 
-def post(url: str, session: requests.Session = None, **kwargs):
+def post(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a POST request
 
@@ -41,7 +41,7 @@ def post(url: str, session: requests.Session = None, **kwargs):
     return res
 
 
-def put(url: str, session: requests.Session = None, **kwargs):
+def put(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a PUT request
 
@@ -61,7 +61,7 @@ def put(url: str, session: requests.Session = None, **kwargs):
     return res
 
 
-def patch(url: str, session: requests.Session = None, **kwargs):
+def patch(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a PATCH request
 
@@ -81,7 +81,7 @@ def patch(url: str, session: requests.Session = None, **kwargs):
     return res
 
 
-def delete(url: str, session: requests.Session = None, **kwargs):
+def delete(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a DELETE request
 
