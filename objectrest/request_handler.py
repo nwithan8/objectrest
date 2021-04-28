@@ -1,5 +1,3 @@
-from typing import Union
-
 from requests_oauthlib import OAuth2Session
 from requests.auth import HTTPBasicAuth
 from oauthlib.oauth2 import BackendApplicationClient

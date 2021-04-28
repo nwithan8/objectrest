@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from objectrest.json_handler import *
 
