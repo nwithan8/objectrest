@@ -329,7 +329,7 @@ class OAuth2RequestHandler(RequestHandler):
 
         self._tokens = self._authorize()
 
-    def _authorize(self):
+    def _authorize(self) -> dict:
         """
         Access token seems to be valid for a month
         Refresh token seems to be valid for a year
@@ -342,7 +342,7 @@ class OAuth2RequestHandler(RequestHandler):
         oauth = OAuth2Session(client=client)
         return oauth.fetch_token(token_url=self._auth_url, auth=auth)
 
-    def _get_access_token(self):
+    def _get_access_token(self) -> str:
         """
         Handle refreshing tokens if needed
 
@@ -367,7 +367,7 @@ class OAuth2RequestHandler(RequestHandler):
             raise Exception("No access token provided by the API.")
         return access_token
 
-    def _make_headers(self, local_headers: dict = None):
+    def _make_headers(self, local_headers: dict = None) -> dict:
         headers = RequestHandler._make_headers(self, local_headers=local_headers)
 
         access_token = self._get_access_token()
