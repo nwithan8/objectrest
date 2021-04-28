@@ -1,3 +1,10 @@
+from typing import Union
+
+from requests_oauthlib import OAuth2Session
+from requests.auth import HTTPBasicAuth
+from oauthlib.oauth2 import BackendApplicationClient
+
+from objectrest import utils
 from objectrest.object_handler import *
 from objectrest.decorators import request_handler_request
 
@@ -12,9 +19,11 @@ class RequestHandler:
         self.headers = universal_headers
         self._session = requests.Session()
 
-    def _make_url(self, local_url: str) -> str:
-        if not self.base_url:
-            return local_url
+    def _make_url(self, local_url: str = None) -> str:
+        if not local_url:
+            if not self.base_url:
+                raise Exception("No URL provided.")
+            return self.base_url
 
         base = self.base_url
         if base.endswith("/"):
@@ -281,3 +290,89 @@ class RequestHandler:
         :rtype: object
         """
         return delete_object(url=url, model=model, session=self._session, **kwargs)
+
+class ApiTokenRequestHandler(RequestHandler):
+    def __init__(self,
+                 api_token: str,
+                 api_token_keyword: str,
+                 base_url: str = None,
+                 universal_parameters: dict = None,
+                 universal_headers: dict = None,
+                 include_key_in_header: bool = False):
+        headers = {}
+        params = {}
+        if universal_headers:
+            headers.update(universal_headers)
+        if universal_parameters:
+            params.update(universal_parameters)
+
+        if include_key_in_header:
+            headers[api_token_keyword] = api_token
+        else:
+            params[api_token_keyword] = api_token
+
+        super().__init__(base_url, params, headers)
+
+
+class OAuth2RequestHandler(RequestHandler):
+    def __init__(self,
+                 client_id: str,
+                 client_secret: str,
+                 authorization_url: str,
+                 base_url: str = None,
+                 universal_parameters: dict = None,
+                 universal_headers: dict = None):
+        super().__init__(base_url, universal_parameters, universal_headers)
+        self._client_id = client_id
+        self._client_secret = client_secret
+        self._auth_url = authorization_url
+
+        self._tokens = self._authorize()
+
+    def _authorize(self):
+        """
+        Access token seems to be valid for a month
+        Refresh token seems to be valid for a year
+
+        :return:
+        :rtype:
+        """
+        auth = HTTPBasicAuth(self._client_id, self._client_secret)
+        client = BackendApplicationClient(client_id=self._client_id)
+        oauth = OAuth2Session(client=client)
+        return oauth.fetch_token(token_url=self._auth_url, auth=auth)
+
+    def _get_access_token(self):
+        """
+        Handle refreshing tokens if needed
+
+        :return:
+        :rtype:
+        """
+        # If not authorized already
+        if not self._tokens:
+            self._authorize()
+
+        # If access token has expired
+        access_token_expiration_timestamp = self._tokens.get('access_token_expires_in')
+        if not access_token_expiration_timestamp \
+                or utils.timestamp_is_expired(timestamp=access_token_expiration_timestamp):
+            self._authorize()
+
+        if not self._tokens:
+            raise Exception("Could not get tokens from the API.")
+
+        access_token = self._tokens.get('access_token')
+        if not access_token:
+            raise Exception("No access token provided by the API.")
+        return access_token
+
+    def _make_headers(self, local_headers: dict = None):
+        headers = RequestHandler._make_headers(self, local_headers=local_headers)
+
+        access_token = self._get_access_token()
+        headers['Authorization'] = f"Bearer {access_token}"
+
+        return headers
+
+
