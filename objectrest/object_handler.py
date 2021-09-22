@@ -3,7 +3,7 @@ from typing import List, Union
 from objectrest.json_handler import *
 
 
-def _create_object(json_data: dict, model: type, sub_keys: List = None) -> Union[object, None]:
+def _create_object(json_data: dict, model: type, sub_keys: List = None, extract_list: bool = False) -> Union[object, None]:
     """
     Parse JSON data into a Pydantic model
 
@@ -13,6 +13,8 @@ def _create_object(json_data: dict, model: type, sub_keys: List = None) -> Union
     :type model:
     :param sub_keys:
     :type sub_keys:
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :return:
     :rtype:
     """
@@ -24,12 +26,15 @@ def _create_object(json_data: dict, model: type, sub_keys: List = None) -> Union
         return None
 
     try:
-        return model(**json_data)
+        if type(json_data) == list and extract_list:
+            return [model(**item) for item in json_data]
+        else:
+            return model(**json_data)
     except:
         return None
 
 
-def get_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
+def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a GET request into an object
 
@@ -39,6 +44,8 @@ def get_object(url: str, model: type, sub_keys: List = None, session: requests.S
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
@@ -47,10 +54,10 @@ def get_object(url: str, model: type, sub_keys: List = None, session: requests.S
     :rtype: object
     """
     json_data = get_json(url=url, session=session, **kwargs)
-    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
+    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys, extract_list=extract_list)
 
 
-def post_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
+def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a POST request into an object
 
@@ -60,6 +67,8 @@ def post_object(url: str, model: type, sub_keys: List = None, session: requests.
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
@@ -68,10 +77,10 @@ def post_object(url: str, model: type, sub_keys: List = None, session: requests.
     :rtype: object
     """
     json_data = post_json(url=url, session=session, **kwargs)
-    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
+    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys, extract_list=extract_list)
 
 
-def put_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
+def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a PUT request into an object
 
@@ -81,6 +90,8 @@ def put_object(url: str, model: type, sub_keys: List = None, session: requests.S
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
@@ -89,10 +100,10 @@ def put_object(url: str, model: type, sub_keys: List = None, session: requests.S
     :rtype: object
     """
     json_data = put_json(url=url, session=session, **kwargs)
-    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
+    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys, extract_list=extract_list)
 
 
-def patch_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
+def patch_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a PATCH request into an object
 
@@ -102,6 +113,8 @@ def patch_object(url: str, model: type, sub_keys: List = None, session: requests
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
@@ -110,10 +123,10 @@ def patch_object(url: str, model: type, sub_keys: List = None, session: requests
     :rtype: object
     """
     json_data = patch_json(url=url, session=session, **kwargs)
-    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
+    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys, extract_list=extract_list)
 
 
-def delete_object(url: str, model: type, sub_keys: List = None, session: requests.Session = None, **kwargs) -> Union[object, None]:
+def delete_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False, session: requests.Session = None, **kwargs) -> Union[object, None]:
     """
     Parse the JSON data from a DELETE request into an object
 
@@ -123,6 +136,8 @@ def delete_object(url: str, model: type, sub_keys: List = None, session: request
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
@@ -131,4 +146,4 @@ def delete_object(url: str, model: type, sub_keys: List = None, session: request
     :rtype: object
     """
     json_data = delete_json(url=url, session=session, **kwargs)
-    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys)
+    return _create_object(json_data=json_data, model=model, sub_keys=sub_keys, extract_list=extract_list)
