@@ -43,13 +43,13 @@ def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :param model: a Pydantic model to generate from the response JSON data
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
-    :type sub_keys: list
+    :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: an object
     :rtype: object
     """
@@ -66,13 +66,13 @@ def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool
     :param model: a Pydantic model to generate from the response JSON data
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
-    :type sub_keys: list
+    :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: an object
     :rtype: object
     """
@@ -89,13 +89,13 @@ def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :param model: a Pydantic model to generate from the response JSON data
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
-    :type sub_keys: list
+    :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: an object
     :rtype: object
     """
@@ -112,13 +112,13 @@ def patch_object(url: str, model: type, sub_keys: List = None, extract_list: boo
     :param model: a Pydantic model to generate from the response JSON data
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
-    :type sub_keys: list
+    :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: an object
     :rtype: object
     """
@@ -135,13 +135,13 @@ def delete_object(url: str, model: type, sub_keys: List = None, extract_list: bo
     :param model: a Pydantic model to generate from the response JSON data
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
-    :type sub_keys: list
+    :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: an object
     :rtype: object
     """

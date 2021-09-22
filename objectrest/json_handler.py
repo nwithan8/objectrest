@@ -28,7 +28,7 @@ def get_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
@@ -45,7 +45,7 @@ def post_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
@@ -62,7 +62,7 @@ def put_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
@@ -79,7 +79,7 @@ def patch_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
@@ -96,7 +96,7 @@ def delete_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """

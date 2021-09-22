@@ -10,7 +10,7 @@ def get(url: str, session: requests.Session = None, **kwargs) -> requests.Respon
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a requests.Response object
     :rtype: requests.Response
     """
@@ -30,7 +30,7 @@ def post(url: str, session: requests.Session = None, **kwargs) -> requests.Respo
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a requests.Response object
     :rtype: requests.Response
     """
@@ -50,7 +50,7 @@ def put(url: str, session: requests.Session = None, **kwargs) -> requests.Respon
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a requests.Response object
     :rtype: requests.Response
     """
@@ -70,7 +70,7 @@ def patch(url: str, session: requests.Session = None, **kwargs) -> requests.Resp
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a requests.Response object
     :rtype: requests.Response
     """
@@ -90,7 +90,7 @@ def delete(url: str, session: requests.Session = None, **kwargs) -> requests.Res
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
     :param kwargs: Keyword arguments to pass to Requests library
-    :type kwargs: dict
+    :type kwargs: dict, optional
     :return: a requests.Response object
     :rtype: requests.Response
     """

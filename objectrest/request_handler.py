@@ -12,6 +12,18 @@ class RequestHandler:
                  base_url: str = None,
                  universal_parameters: dict = None,
                  universal_headers: dict = None):
+        """
+        Create a reuseable request handler
+        Set universal parameters and headers used for all requests
+        Reuses session for all requests
+
+        :param base_url: Base URL of all requests
+        :type base_url: str, optional
+        :param universal_parameters: Dictionary of parameters to include in all requests (i.e. API token, language)
+        :type universal_parameters: dict, optional
+        :param universal_headers: Dictionary of header to include in all requests (i.e. API token, user agent)
+        :type universal_parameters: dict, optional
+        """
         self.base_url = base_url
         self.params = universal_parameters
         self.headers = universal_headers
@@ -63,7 +75,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: A Requests.Response object
         :rtype: requests.Response
         """
@@ -78,7 +90,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: a JSON dictionary
         :rtype: dict
         """
@@ -95,7 +107,7 @@ class RequestHandler:
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
@@ -110,7 +122,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: A Requests.Response object
         :rtype: requests.Response
         """
@@ -125,7 +137,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: a JSON dictionary
         :rtype: dict
         """
@@ -142,7 +154,7 @@ class RequestHandler:
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
@@ -157,7 +169,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: A Requests.Response object
         :rtype: requests.Response
         """
@@ -172,7 +184,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: a JSON dictionary
         :rtype: dict
         """
@@ -189,7 +201,7 @@ class RequestHandler:
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
@@ -204,7 +216,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: A Requests.Response object
         :rtype: requests.Response
         """
@@ -219,7 +231,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: a JSON dictionary
         :rtype: dict
         """
@@ -236,7 +248,7 @@ class RequestHandler:
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
@@ -251,7 +263,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: A Requests.Response object
         :rtype: requests.Response
         """
@@ -266,7 +278,7 @@ class RequestHandler:
         :param url: URL endpoint to append to base URL
         :type url: str
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: a JSON dictionary
         :rtype: dict
         """
@@ -283,7 +295,7 @@ class RequestHandler:
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
         :param kwargs: Keyword arguments to pass to Requests library
-        :type kwargs: dict
+        :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
@@ -297,6 +309,24 @@ class ApiTokenRequestHandler(RequestHandler):
                  universal_parameters: dict = None,
                  universal_headers: dict = None,
                  include_key_in_header: bool = False):
+        """
+        Create a reuseable request handler to handle requests requiring API tokens
+        Set universal parameters and headers used for all requests
+        Reuses session for all requests
+
+        :param base_url: Base URL of all requests
+        :type base_url: str, optional
+        :param universal_parameters: Dictionary of parameters to include in all requests (i.e. API token, language)
+        :type universal_parameters: dict, optional
+        :param universal_headers: Dictionary of header to include in all requests (i.e. API token, user agent)
+        :type universal_parameters: dict, optional
+        :param api_token: The API token needed for each request
+        :type api_token: str
+        :param api_token_keyword: The name of the API token parameter expected by the API (i.e "token", "key", "api_key")
+        :type api_token_keyword: str
+        :param include_key_in_header: Whether to include API token in header (included as URL param otherwise)
+        :type include_key_in_header: bool, optional
+        """
         headers = {}
         params = {}
         if universal_headers:
@@ -320,6 +350,24 @@ class OAuth2RequestHandler(RequestHandler):
                  base_url: str = None,
                  universal_parameters: dict = None,
                  universal_headers: dict = None):
+        """
+        Create a reuseable request handler to handle requests requiring API tokens
+        Set universal parameters and headers used for all requests
+        Reuses session for all requests
+
+        :param base_url: Base URL of all requests
+        :type base_url: str, optional
+        :param universal_parameters: Dictionary of parameters to include in all requests (i.e. API token, language)
+        :type universal_parameters: dict, optional
+        :param universal_headers: Dictionary of header to include in all requests (i.e. API token, user agent)
+        :type universal_parameters: dict, optional
+        :param client_id: The client ID required to authenticate each request
+        :type client_id: str
+        :param client_secret: The client secret required to authenticate each request
+        :type client_secret: str
+        :param authorization_url: The URL to exchange client ID + secret for a token on each request
+        :type authorization_url: str
+        """
         super().__init__(base_url, universal_parameters, universal_headers)
         self._client_id = client_id
         self._client_secret = client_secret

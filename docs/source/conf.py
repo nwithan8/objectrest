@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'objectrest'
-copyright = '2021, Nate Harris'
+copyright = "Copyright © 2021 - Nate Harris"
 author = 'Nate Harris'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '0.3.0'
 
 
 # -- General configuration ---------------------------------------------------
