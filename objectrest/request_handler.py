@@ -97,7 +97,7 @@ class RequestHandler:
         return get_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def get_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
+    def get_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a GET request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -106,12 +106,16 @@ class RequestHandler:
         :type url: str
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
+        :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
+        :type sub_keys: list, optional
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :type extract_list: bool
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
-        return get_object(url=url, model=model, session=self._session, **kwargs)
+        return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
     @request_handler_request
     def post(self, url: str, **kwargs) -> requests.Response:
@@ -144,7 +148,7 @@ class RequestHandler:
         return post_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def post_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
+    def post_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a POST request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -153,12 +157,16 @@ class RequestHandler:
         :type url: str
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
+        :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
+        :type sub_keys: list, optional
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :type extract_list: bool
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
-        return post_object(url=url, model=model, session=self._session, **kwargs)
+        return post_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
     @request_handler_request
     def put(self, url: str, **kwargs) -> requests.Response:
@@ -191,7 +199,7 @@ class RequestHandler:
         return put_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def put_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
+    def put_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PUT request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -200,12 +208,16 @@ class RequestHandler:
         :type url: str
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
+        :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
+        :type sub_keys: list, optional
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :type extract_list: bool
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
-        return put_object(url=url, model=model, session=self._session, **kwargs)
+        return put_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
     @request_handler_request
     def patch(self, url: str, **kwargs) -> requests.Response:
@@ -238,7 +250,7 @@ class RequestHandler:
         return patch_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def patch_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
+    def patch_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PATCH request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -247,12 +259,16 @@ class RequestHandler:
         :type url: str
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
+        :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
+        :type sub_keys: list, optional
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :type extract_list: bool
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
-        return patch_object(url=url, model=model, session=self._session, **kwargs)
+        return patch_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
     @request_handler_request
     def delete(self, url: str, **kwargs) -> requests.Response:
@@ -285,7 +301,7 @@ class RequestHandler:
         return delete_json(url=url, session=self._session, **kwargs)
 
     @request_handler_request
-    def delete_object(self, url: str, model: type, **kwargs) -> Union[object, None]:
+    def delete_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a DELETE request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -294,12 +310,16 @@ class RequestHandler:
         :type url: str
         :param model: a Pydantic model to generate from the response JSON data
         :type model: type
+        :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
+        :type sub_keys: list, optional
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :type extract_list: bool
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
         :rtype: object
         """
-        return delete_object(url=url, model=model, session=self._session, **kwargs)
+        return delete_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
 class ApiTokenRequestHandler(RequestHandler):
     def __init__(self,
