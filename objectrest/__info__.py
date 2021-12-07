@@ -1,4 +1,4 @@
-__version__ = '0.3.1'
+__version__ = '0.4.0'
 
 __title__ = "objectrest"
 __github_project_name__ = "objectrest"
