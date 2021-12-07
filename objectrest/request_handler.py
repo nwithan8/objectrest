@@ -67,7 +67,7 @@ class RequestHandler:
         return headers
 
     @request_handler_request
-    def get(self, url: str, **kwargs) -> requests.Response:
+    def get(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a GET request
         Automatically appends base URL, universal params and headers, reuses session
@@ -79,10 +79,10 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return get(url=url, session=self._session, **kwargs)
+        return get(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def get_json(self, url: str, **kwargs) -> dict:
+    def get_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
         """
         Return the JSON data from a GET request
         Automatically appends base URL, universal params and headers, reuses session
@@ -94,10 +94,11 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return get_json(url=url, session=self._session, **kwargs)
+        return get_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def get_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
+    def get_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
+                   use_proxy: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a GET request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -118,7 +119,7 @@ class RequestHandler:
         return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
 
     @request_handler_request
-    def post(self, url: str, **kwargs) -> requests.Response:
+    def post(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a POST request
         Automatically appends base URL, universal params and headers, reuses session
@@ -130,10 +131,10 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return post(url=url, session=self._session, **kwargs)
+        return post(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def post_json(self, url: str, **kwargs) -> dict:
+    def post_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
         """
         Return the JSON data from a POST request
         Automatically appends base URL, universal params and headers, reuses session
@@ -145,10 +146,11 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return post_json(url=url, session=self._session, **kwargs)
+        return post_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def post_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
+    def post_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
+                    use_proxy: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a POST request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -166,10 +168,11 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return post_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
+        return post_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
+                           use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def put(self, url: str, **kwargs) -> requests.Response:
+    def put(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a PUT request
         Automatically appends base URL, universal params and headers, reuses session
@@ -181,10 +184,10 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return put(url=url, session=self._session, **kwargs)
+        return put(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def put_json(self, url: str, **kwargs) -> dict:
+    def put_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
         """
         Return the JSON data from a PUT request
         Automatically appends base URL, universal params and headers, reuses session
@@ -196,10 +199,11 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return put_json(url=url, session=self._session, **kwargs)
+        return put_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def put_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
+    def put_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
+                   use_proxy: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PUT request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -217,10 +221,11 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return put_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
+        return put_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
+                          use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def patch(self, url: str, **kwargs) -> requests.Response:
+    def patch(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a PATCH request
         Automatically appends base URL, universal params and headers, reuses session
@@ -232,10 +237,10 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return patch(url=url, session=self._session, **kwargs)
+        return patch(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def patch_json(self, url: str, **kwargs) -> dict:
+    def patch_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
         """
         Return the JSON data from a PATCH request
         Automatically appends base URL, universal params and headers, reuses session
@@ -247,10 +252,11 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return patch_json(url=url, session=self._session, **kwargs)
+        return patch_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def patch_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
+    def patch_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
+                     use_proxy: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a PATCH request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -268,10 +274,11 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return patch_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
+        return patch_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
+                            use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def delete(self, url: str, **kwargs) -> requests.Response:
+    def delete(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
         """
         Return the requests.Response object from a DELETE request
         Automatically appends base URL, universal params and headers, reuses session
@@ -283,10 +290,10 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return delete(url=url, session=self._session, **kwargs)
+        return delete(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def delete_json(self, url: str, **kwargs) -> dict:
+    def delete_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
         """
         Return the JSON data from a DELETE request
         Automatically appends base URL, universal params and headers, reuses session
@@ -298,10 +305,11 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return delete_json(url=url, session=self._session, **kwargs)
+        return delete_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
-    def delete_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False, **kwargs) -> Union[object, None]:
+    def delete_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
+                      use_proxy: bool = False, **kwargs) -> Union[object, None]:
         """
         Parse the JSON data from a DELETE request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -319,7 +327,9 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return delete_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
+        return delete_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
+                             use_proxy=use_proxy, **kwargs)
+
 
 class ApiTokenRequestHandler(RequestHandler):
     def __init__(self,
@@ -440,5 +450,3 @@ class OAuth2RequestHandler(RequestHandler):
         headers['Authorization'] = f"Bearer {access_token}"
 
         return headers
-
-

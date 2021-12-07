@@ -19,7 +19,7 @@ def _parse_response_json(response: requests.Response = None) -> dict:
         return {}
 
 
-def get_json(url: str, session: requests.Session = None, **kwargs) -> dict:
+def get_json(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> dict:
     """
     Return the JSON data from a GET request
 
@@ -27,16 +27,18 @@ def get_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :type url: str
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
     :param kwargs: Keyword arguments to pass to Requests library
     :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = get(url=url, session=session, **kwargs)
+    res = get(url=url, session=session, use_proxy=use_proxy, **kwargs)
     return _parse_response_json(response=res)
 
 
-def post_json(url: str, session: requests.Session = None, **kwargs) -> dict:
+def post_json(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> dict:
     """
     Return the JSON data from a POST request
 
@@ -44,16 +46,18 @@ def post_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :type url: str
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
     :param kwargs: Keyword arguments to pass to Requests library
     :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = post(url=url, session=session, **kwargs)
+    res = post(url=url, session=session, use_proxy=use_proxy, **kwargs)
     return _parse_response_json(response=res)
 
 
-def put_json(url: str, session: requests.Session = None, **kwargs) -> dict:
+def put_json(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> dict:
     """
     Return the JSON data from a PUT request
 
@@ -61,16 +65,18 @@ def put_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :type url: str
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
     :param kwargs: Keyword arguments to pass to Requests library
     :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = put(url=url, session=session, **kwargs)
+    res = put(url=url, session=session, use_proxy=use_proxy, **kwargs)
     return _parse_response_json(response=res)
 
 
-def patch_json(url: str, session: requests.Session = None, **kwargs) -> dict:
+def patch_json(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> dict:
     """
     Return the JSON data from a PATCH request
 
@@ -78,16 +84,18 @@ def patch_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :type url: str
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
     :param kwargs: Keyword arguments to pass to Requests library
     :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = patch(url=url, session=session, **kwargs)
+    res = patch(url=url, session=session, use_proxy=use_proxy, **kwargs)
     return _parse_response_json(response=res)
 
 
-def delete_json(url: str, session: requests.Session = None, **kwargs) -> dict:
+def delete_json(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> dict:
     """
     Return the JSON data from a DELETE request
 
@@ -95,10 +103,12 @@ def delete_json(url: str, session: requests.Session = None, **kwargs) -> dict:
     :type url: str
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
     :param kwargs: Keyword arguments to pass to Requests library
     :type kwargs: dict, optional
     :return: a JSON dictionary
     :rtype: dict
     """
-    res = delete(url=url, session=session, **kwargs)
+    res = delete(url=url, session=session, use_proxy=use_proxy, **kwargs)
     return _parse_response_json(response=res)
