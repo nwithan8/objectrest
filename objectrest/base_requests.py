@@ -31,7 +31,53 @@ def get(url: str, session: requests.Session = None, use_proxy: bool = False, **k
     return res
 
 
-def post(url: str, session: requests.Session = None, **kwargs) -> requests.Response:
+def options(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> requests.Response:
+    """
+    Return the requests.Response object from an OPTIONS request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: a requests.Session to use for the API call (optional)
+    :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param kwargs: Keyword arguments to pass to Requests library
+    :type kwargs: dict, optional
+    :return: a requests.Response object
+    :rtype: requests.Response
+    """
+    kwargs = _add_params(use_proxy=use_proxy, **kwargs)
+    if session:
+        res = session.options(url=url, **kwargs)
+    else:
+        res = requests.options(url=url, **kwargs)
+    return res
+
+
+def head(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> requests.Response:
+    """
+    Return the requests.Response object from a HEAD request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: a requests.Session to use for the API call (optional)
+    :type session: requests.Session, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param kwargs: Keyword arguments to pass to Requests library
+    :type kwargs: dict, optional
+    :return: a requests.Response object
+    :rtype: requests.Response
+    """
+    kwargs = _add_params(use_proxy=use_proxy, **kwargs)
+    if session:
+        res = session.head(url=url, **kwargs)
+    else:
+        res = requests.head(url=url, **kwargs)
+    return res
+
+
+def post(url: str, session: requests.Session = None, use_proxy: bool = False, **kwargs) -> requests.Response:
     """
     Return the requests.Response object from a POST request
 

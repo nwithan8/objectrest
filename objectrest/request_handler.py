@@ -116,7 +116,38 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session, **kwargs)
+        return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
+                          use_proxy=use_proxy, **kwargs)
+
+    @request_handler_request
+    def options(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
+        """
+        Return the requests.Response object from an OPTIONS request
+        Automatically appends base URL, universal params and headers, reuses session
+
+        :param url: URL endpoint to append to base URL
+        :type url: str
+        :param kwargs: Keyword arguments to pass to Requests library
+        :type kwargs: dict, optional
+        :return: A Requests.Response object
+        :rtype: requests.Response
+        """
+        return options(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+
+    @request_handler_request
+    def head(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
+        """
+        Return the requests.Response object from a HEAD request
+        Automatically appends base URL, universal params and headers, reuses session
+
+        :param url: URL endpoint to append to base URL
+        :type url: str
+        :param kwargs: Keyword arguments to pass to Requests library
+        :type kwargs: dict, optional
+        :return: A Requests.Response object
+        :rtype: requests.Response
+        """
+        return head(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
 
     @request_handler_request
     def post(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
