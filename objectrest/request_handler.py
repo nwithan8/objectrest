@@ -514,6 +514,12 @@ class OAuth2RequestHandler(RequestHandler):
         return access_token
 
     def _make_headers(self, local_headers: dict = None) -> dict:
+        """
+        Retrieve access token to make headers for an OAuth2 request
+
+        :param local_headers:
+        :return:
+        """
         headers = super()._make_headers(local_headers=local_headers)
 
         access_token = self._get_access_token()
