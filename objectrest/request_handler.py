@@ -13,7 +13,7 @@ class RequestHandler:
                  universal_parameters: dict = None,
                  universal_headers: dict = None):
         """
-        Create a reuseable request handler
+        Create a reusable request handler
         Set universal parameters and headers used for all requests
         Reuses session for all requests
 
@@ -74,6 +74,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -89,6 +91,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: a JSON dictionary
@@ -109,8 +113,11 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
+        or treat entire JSON as a whole object
         :type extract_list: bool
+        :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
@@ -127,6 +134,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -142,6 +151,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -157,6 +168,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -172,6 +185,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: a JSON dictionary
@@ -192,8 +207,11 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
+        or treat entire JSON as a whole object
         :type extract_list: bool
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
@@ -210,6 +228,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -225,6 +245,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: a JSON dictionary
@@ -245,8 +267,11 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
+        or treat entire JSON as a whole object
         :type extract_list: bool
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
@@ -263,6 +288,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -278,6 +305,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: a JSON dictionary
@@ -298,8 +327,11 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
+        or treat entire JSON as a whole object
         :type extract_list: bool
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
@@ -316,6 +348,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: A Requests.Response object
@@ -331,6 +365,8 @@ class RequestHandler:
 
         :param url: URL endpoint to append to base URL
         :type url: str
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: a JSON dictionary
@@ -351,8 +387,11 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
+        or treat entire JSON as a whole object
         :type extract_list: bool
+        :param use_proxy: whether to use a random proxy for your request (default False)
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object
@@ -371,7 +410,7 @@ class ApiTokenRequestHandler(RequestHandler):
                  universal_headers: dict = None,
                  include_key_in_header: bool = False):
         """
-        Create a reuseable request handler to handle requests requiring API tokens
+        Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
         Reuses session for all requests
 
@@ -383,7 +422,7 @@ class ApiTokenRequestHandler(RequestHandler):
         :type universal_parameters: dict, optional
         :param api_token: The API token needed for each request
         :type api_token: str
-        :param api_token_keyword: The name of the API token parameter expected by the API (i.e "token", "key", "api_key")
+        :param api_token_keyword: Name of the API token parameter expected by the API (i.e "token", "key", "api_key")
         :type api_token_keyword: str
         :param include_key_in_header: Whether to include API token in header (included as URL param otherwise)
         :type include_key_in_header: bool, optional
@@ -412,7 +451,7 @@ class OAuth2RequestHandler(RequestHandler):
                  universal_parameters: dict = None,
                  universal_headers: dict = None):
         """
-        Create a reuseable request handler to handle requests requiring API tokens
+        Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
         Reuses session for all requests
 
@@ -475,7 +514,7 @@ class OAuth2RequestHandler(RequestHandler):
         return access_token
 
     def _make_headers(self, local_headers: dict = None) -> dict:
-        headers = RequestHandler._make_headers(self, local_headers=local_headers)
+        headers = super()._make_headers(local_headers=local_headers)
 
         access_token = self._get_access_token()
         headers['Authorization'] = f"Bearer {access_token}"
