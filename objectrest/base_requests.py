@@ -4,7 +4,10 @@ from objectrest.utils import get_proxy_dict
 
 def _add_params(use_proxy: bool = False, **kwargs) -> dict:
     if use_proxy:
-        kwargs['proxies'] = get_proxy_dict()
+        proxy_dict = get_proxy_dict()
+        if not proxy_dict:
+            raise Exception('No proxies available')
+        kwargs['proxies'] = proxy_dict
     return kwargs
 
 

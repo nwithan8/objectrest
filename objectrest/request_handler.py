@@ -117,7 +117,7 @@ class RequestHandler:
         or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
-    :type use_proxy: bool, optional
+        :type use_proxy: bool, optional
         :param kwargs: Keyword arguments to pass to Requests library
         :type kwargs: dict, optional
         :return: an object

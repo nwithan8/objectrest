@@ -1,5 +1,7 @@
 import time
-import proxlist
+from typing import List, Union
+
+import sslproxies
 
 
 def timestamp_is_expired(timestamp: str) -> bool:
@@ -11,9 +13,8 @@ def timestamp_is_expired(timestamp: str) -> bool:
         raise Exception("Could not check timestamp expiration.")
 
 
-def get_proxy_dict() -> dict:
-    proxy = proxlist.random_proxy()
-    return {
-        'http': f'http://{proxy}',
-        'https': f'https://{proxy}',
-    }
+def get_proxy_dict(anonymous: bool = False, countries: List[str] = None) -> Union[dict, None]:
+    proxy = sslproxies.get_proxy(countries=countries, anonymous=anonymous, verify=True)
+    if proxy:
+        return proxy.requests_dict
+    return {}
