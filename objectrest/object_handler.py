@@ -7,17 +7,6 @@ def _create_object(json_data: dict, model: type, sub_keys: List = None, extract_
     object, None]:
     """
     Parse JSON data into a Pydantic model
-
-    :param json_data:
-    :type json_data:
-    :param model:
-    :type model:
-    :param sub_keys:
-    :type sub_keys:
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
-    :type extract_list: bool
-    :return:
-    :rtype:
     """
     if sub_keys:
         for key in sub_keys:
@@ -46,7 +35,7 @@ def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list, optional
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
@@ -72,7 +61,7 @@ def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list, optional
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
@@ -98,7 +87,7 @@ def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list, optional
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
@@ -124,7 +113,7 @@ def patch_object(url: str, model: type, sub_keys: List = None, extract_list: boo
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list, optional
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional
@@ -150,7 +139,7 @@ def delete_object(url: str, model: type, sub_keys: List = None, extract_list: bo
     :type model: type
     :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
     :type sub_keys: list, optional
-    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model, or treat entire JSON as a whole object
+    :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
     :param session: a requests.Session to use for the API call (optional)
     :type session: requests.Session, optional

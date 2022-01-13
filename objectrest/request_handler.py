@@ -113,8 +113,7 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
-        or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
         :type use_proxy: bool, optional
@@ -207,8 +206,7 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
-        or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
         :type use_proxy: bool, optional
@@ -267,8 +265,7 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
-        or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
         :type use_proxy: bool, optional
@@ -327,8 +324,7 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
-        or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
         :type use_proxy: bool, optional
@@ -387,8 +383,7 @@ class RequestHandler:
         :type model: type
         :param sub_keys: A list of sub-keys to search for (in order) to find JSON data for model.
         :type sub_keys: list, optional
-        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model,
-        or treat entire JSON as a whole object
+        :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
         :type extract_list: bool
         :param use_proxy: whether to use a random proxy for your request (default False)
         :type use_proxy: bool, optional

@@ -23,21 +23,18 @@ The ``RequestHandler`` Class
 -----------------------------
 .. autoclass:: objectrest.request_handler.RequestHandler
    :members:
-
-   .. automethod:: objectrest.request_handler.RequestHandler.__init__
+   :undoc-members:
 
 The ``ApiTokenRequestHandler`` Class
 -------------------------------------
 .. autoclass:: objectrest.request_handler.ApiTokenRequestHandler
    :members:
+   :undoc-members:
    :show-inheritance:
-
-   .. automethod:: objectrest.request_handler.ApiTokenRequestHandler.__init__
 
 The ``OAuth2RequestHandler`` Class
 -----------------------------------
 .. autoclass:: objectrest.request_handler.OAuth2RequestHandler
    :members:
+   :undoc-members:
    :show-inheritance:
-
-   .. automethod:: objectrest.request_handler.OAuth2RequestHandler.__init__
