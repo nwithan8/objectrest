@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 REST API request handler Python documentation
-====================================
+=============================================
 
 .. toctree::
    :maxdepth: 2
