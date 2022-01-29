@@ -2,6 +2,7 @@ from requests_oauthlib import OAuth2Session
 from requests.auth import HTTPBasicAuth
 from oauthlib.oauth2 import BackendApplicationClient
 
+import objectrest
 from objectrest import utils
 from objectrest.object_handler import *
 from objectrest.decorators import request_handler_request
@@ -31,7 +32,7 @@ class RequestHandler:
         self.params = universal_parameters
         self.headers = universal_headers
         self._log = log_requests
-        self._session = requests.Session()
+        self._session = objectrest.Session()
 
     def _make_url(self, local_url: str = None) -> str:
         if not local_url:

@@ -3,6 +3,8 @@ from enum import Enum
 
 import requests
 
+from objectrest.session import Session
+
 from objectrest.utils import get_proxy_dict
 
 
@@ -25,7 +27,7 @@ def _add_params(use_proxy: bool = False, **kwargs) -> dict:
     return kwargs
 
 
-def _make_request(request_type: RequestType, url: str, session: requests.Session = None, use_proxy: bool = False,
+def _make_request(request_type: RequestType, url: str, session: Session = None, use_proxy: bool = False,
                   log: bool = False, **kwargs) -> requests.Response:
     kwargs = _add_params(use_proxy=use_proxy, **kwargs)
     if log:
@@ -53,15 +55,15 @@ def _make_request(request_type: RequestType, url: str, session: requests.Session
     return res
 
 
-def get(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def get(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a GET request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -75,15 +77,15 @@ def get(url: str, session: requests.Session = None, use_proxy: bool = False, log
                          **kwargs)
 
 
-def options(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def options(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from an OPTIONS request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -97,15 +99,15 @@ def options(url: str, session: requests.Session = None, use_proxy: bool = False,
                          **kwargs)
 
 
-def head(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def head(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a HEAD request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -119,15 +121,15 @@ def head(url: str, session: requests.Session = None, use_proxy: bool = False, lo
                          **kwargs)
 
 
-def post(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def post(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a POST request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -141,15 +143,15 @@ def post(url: str, session: requests.Session = None, use_proxy: bool = False, lo
                          **kwargs)
 
 
-def put(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def put(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a PUT request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -163,15 +165,15 @@ def put(url: str, session: requests.Session = None, use_proxy: bool = False, log
                          **kwargs)
 
 
-def patch(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def patch(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a PATCH request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -185,15 +187,15 @@ def patch(url: str, session: requests.Session = None, use_proxy: bool = False, l
                          **kwargs)
 
 
-def delete(url: str, session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+def delete(url: str, session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> requests.Response:
     """
     Return the requests.Response object from a DELETE request
 
     :param url: URL endpoint to append to base URL
     :type url: str
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)

@@ -3,6 +3,8 @@ from objectrest.request_handler import get, head, options, post, put, patch, del
     get_object, post_object, put_object, patch_object, delete_object, \
     RequestHandler, ApiTokenRequestHandler, OAuth2RequestHandler
 
+from objectrest.session import Session, Response
+
 __all__ = [
     'get',
     'head',
@@ -23,5 +25,7 @@ __all__ = [
     'delete_object',
     'RequestHandler',
     'ApiTokenRequestHandler',
-    'OAuth2RequestHandler'
+    'OAuth2RequestHandler',
+    'Session',
+    'Response'
 ]

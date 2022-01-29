@@ -20,12 +20,12 @@ def _create_object(json_data: dict, model: type, sub_keys: List = None, extract_
             return [model(**item) for item in json_data]
         else:
             return model(**json_data)
-    except:
+    except Exception:
         return None
 
 
 def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-               session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+               session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> Union[object, None]:
     """
     Parse the JSON data from a GET request into an object
@@ -38,8 +38,8 @@ def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -54,7 +54,7 @@ def get_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
 
 
 def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+                session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> Union[object, None]:
     """
     Parse the JSON data from a POST request into an object
@@ -67,8 +67,8 @@ def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool
     :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -83,7 +83,7 @@ def post_object(url: str, model: type, sub_keys: List = None, extract_list: bool
 
 
 def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-               session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+               session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> Union[object, None]:
     """
     Parse the JSON data from a PUT request into an object
@@ -96,8 +96,8 @@ def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
     :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -112,7 +112,7 @@ def put_object(url: str, model: type, sub_keys: List = None, extract_list: bool 
 
 
 def patch_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                 session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+                 session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> Union[object, None]:
     """
     Parse the JSON data from a PATCH request into an object
@@ -125,8 +125,8 @@ def patch_object(url: str, model: type, sub_keys: List = None, extract_list: boo
     :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
@@ -141,7 +141,7 @@ def patch_object(url: str, model: type, sub_keys: List = None, extract_list: boo
 
 
 def delete_object(url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                  session: requests.Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
+                  session: Session = None, use_proxy: bool = False, log: bool = False, **kwargs) \
         -> Union[object, None]:
     """
     Parse the JSON data from a DELETE request into an object
@@ -154,8 +154,8 @@ def delete_object(url: str, model: type, sub_keys: List = None, extract_list: bo
     :type sub_keys: list, optional
     :param extract_list: If top-level of JSON is a list, whether to convert each list item into model or treat entire JSON as a whole object
     :type extract_list: bool
-    :param session: a requests.Session to use for the API call (optional)
-    :type session: requests.Session, optional
+    :param session: an objectrest.Session to use for the API call (optional)
+    :type session: objectrest.Session, optional
     :param use_proxy: whether to use a random proxy for your request (default False)
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
