@@ -4,6 +4,7 @@ from objectrest.request_handler import get, head, options, post, put, patch, del
     RequestHandler, ApiTokenRequestHandler, OAuth2RequestHandler
 
 from objectrest.session import Session, Response
+from objectrest import exceptions
 
 __all__ = [
     'get',
