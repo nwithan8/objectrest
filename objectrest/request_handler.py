@@ -11,7 +11,8 @@ class RequestHandler:
     def __init__(self,
                  base_url: str = None,
                  universal_parameters: dict = None,
-                 universal_headers: dict = None):
+                 universal_headers: dict = None,
+                 log_requests: bool = False):
         """
         Create a reusable request handler
         Set universal parameters and headers used for all requests
@@ -23,10 +24,13 @@ class RequestHandler:
         :type universal_parameters: dict, optional
         :param universal_headers: Dictionary of header to include in all requests (i.e. API token, user agent)
         :type universal_parameters: dict, optional
+        :param log_requests: whether to log the request (default False)
+        :type log_requests: bool, optional
         """
         self.base_url = base_url
         self.params = universal_parameters
         self.headers = universal_headers
+        self._log = log_requests
         self._session = requests.Session()
 
     def _make_url(self, local_url: str = None) -> str:
@@ -81,7 +85,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return get(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return get(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def get_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -98,7 +102,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return get_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return get_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def get_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
@@ -123,7 +127,7 @@ class RequestHandler:
         :rtype: object
         """
         return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                          use_proxy=use_proxy, **kwargs)
+                          use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def options(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -140,7 +144,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return options(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return options(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def head(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -157,7 +161,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return head(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return head(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def post(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -174,7 +178,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return post(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return post(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def post_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -191,7 +195,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return post_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return post_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def post_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
@@ -216,7 +220,7 @@ class RequestHandler:
         :rtype: object
         """
         return post_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                           use_proxy=use_proxy, **kwargs)
+                           use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def put(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -233,7 +237,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return put(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return put(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def put_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -250,7 +254,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return put_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return put_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def put_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
@@ -275,7 +279,7 @@ class RequestHandler:
         :rtype: object
         """
         return put_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                          use_proxy=use_proxy, **kwargs)
+                          use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def patch(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -292,7 +296,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return patch(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return patch(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def patch_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -309,7 +313,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return patch_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return patch_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def patch_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
@@ -334,7 +338,7 @@ class RequestHandler:
         :rtype: object
         """
         return patch_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                            use_proxy=use_proxy, **kwargs)
+                            use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def delete(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -351,7 +355,7 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return delete(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return delete(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def delete_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -368,7 +372,7 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return delete_json(url=url, session=self._session, use_proxy=use_proxy, **kwargs)
+        return delete_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
 
     @request_handler_request
     def delete_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
@@ -393,7 +397,7 @@ class RequestHandler:
         :rtype: object
         """
         return delete_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                             use_proxy=use_proxy, **kwargs)
+                             use_proxy=use_proxy, log=self._log, **kwargs)
 
 
 class ApiTokenRequestHandler(RequestHandler):
@@ -403,7 +407,8 @@ class ApiTokenRequestHandler(RequestHandler):
                  base_url: str = None,
                  universal_parameters: dict = None,
                  universal_headers: dict = None,
-                 include_key_in_header: bool = False):
+                 include_key_in_header: bool = False,
+                 log_requests: bool = False):
         """
         Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
@@ -421,6 +426,8 @@ class ApiTokenRequestHandler(RequestHandler):
         :type api_token_keyword: str
         :param include_key_in_header: Whether to include API token in header (included as URL param otherwise)
         :type include_key_in_header: bool, optional
+        :param log_requests: whether to log the request (default False)
+        :type log_requests: bool, optional
         """
         headers = {}
         params = {}
@@ -434,7 +441,7 @@ class ApiTokenRequestHandler(RequestHandler):
         else:
             params[api_token_keyword] = api_token
 
-        super().__init__(base_url, params, headers)
+        super().__init__(base_url, universal_parameters=params, universal_headers=headers, log_requests=log_requests)
 
 
 class OAuth2RequestHandler(RequestHandler):
@@ -444,7 +451,8 @@ class OAuth2RequestHandler(RequestHandler):
                  authorization_url: str,
                  base_url: str = None,
                  universal_parameters: dict = None,
-                 universal_headers: dict = None):
+                 universal_headers: dict = None,
+                 log_requests: bool = False):
         """
         Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
@@ -462,8 +470,11 @@ class OAuth2RequestHandler(RequestHandler):
         :type client_secret: str
         :param authorization_url: The URL to exchange client ID + secret for a token on each request
         :type authorization_url: str
+        :param log_requests: whether to log the request (default False)
+        :type log_requests: bool, optional
         """
-        super().__init__(base_url, universal_parameters, universal_headers)
+        super().__init__(base_url=base_url, universal_parameters=universal_parameters,
+                         universal_headers=universal_headers, log_requests=log_requests)
         self._client_id = client_id
         self._client_secret = client_secret
         self._auth_url = authorization_url
