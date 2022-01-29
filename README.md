@@ -2,6 +2,7 @@
 [![PyPi](https://static.pepy.tech/personalized-badge/objectrest?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pypi.org/project/objectrest)
 [![License](https://img.shields.io/pypi/l/tautulli?color=orange&style=flat-square)](https://github.com/nwithan8/objectrest/blob/master/LICENSE)
 
+[![Tests](https://github.com/nwithan8/objectrest/workflows/Tests/badge.svg)](https://github.com/nwithan8/objectrest/actions?query=workflow%3ATests)
 [![Open Issues](https://img.shields.io/github/issues-raw/nwithan8/objectrest?color=gold&style=flat-square)](https://github.com/nwithan8/objectrest/issues?q=is%3Aopen+is%3Aissue)
 [![Closed Issues](https://img.shields.io/github/issues-closed-raw/nwithan8/objectrest?color=black&style=flat-square)](https://github.com/nwithan8/objectrest/issues?q=is%3Aissue+is%3Aclosed)
 [![Latest Release](https://img.shields.io/github/v/release/nwithan8/objectrest?color=red&label=latest%20release&logo=github&style=flat-square)](https://github.com/nwithan8/objectrest/releases)
