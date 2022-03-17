@@ -1,11 +1,26 @@
 from objectrest import exceptions
-from objectrest.request_handler import (ApiTokenRequestHandler,
-                                        OAuth2RequestHandler, RequestHandler,
-                                        delete, delete_json, delete_object,
-                                        get, get_json, get_object, head,
-                                        options, patch, patch_json,
-                                        patch_object, post, post_json,
-                                        post_object, put, put_json, put_object)
+from objectrest.request_handler import (
+    ApiTokenRequestHandler,
+    OAuth2RequestHandler,
+    RequestHandler,
+    delete,
+    delete_json,
+    delete_object,
+    get,
+    get_json,
+    get_object,
+    head,
+    options,
+    patch,
+    patch_json,
+    patch_object,
+    post,
+    post_json,
+    post_object,
+    put,
+    put_json,
+    put_object,
+)
 from objectrest.session import Response, Session
 
 __all__ = [
