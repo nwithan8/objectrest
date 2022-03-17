@@ -27,7 +27,6 @@ with open("requirements.txt", 'r') as fh:
 DEV_REQUIREMENTS = [
     "black",
     "flake8",
-    "isort",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",

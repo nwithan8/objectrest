@@ -33,23 +33,15 @@ black-check:
 	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
 
 ## format - Runs all formatting tools against the project
-format: black isort lint
+format: black lint
 
 ## format-check - Checks if the project is formatted correctly against all formatting rules
-format-check: black-check isort-check lint
+format-check: black-check lint
 
 ## install - Install the project locally
 install:
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
-
-## isort - Sorts imports throughout the project
-isort:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
-
-## isort-check - Checks that imports throughout the project are sorted correctly
-isort-check:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --check-only
 
 ## lint - Lint the project
 lint:
@@ -59,4 +51,4 @@ lint:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help build coverage clean black black-check format format-check install isort isort-check lint test
+.PHONY: help build coverage clean black black-check format format-check install lint test
