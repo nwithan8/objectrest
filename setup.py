@@ -1,6 +1,25 @@
 import setuptools
 
-from objectrest import __info__ as package_info
+__version__ = "VERSIONADDEDBYGITHUB"
+
+__title__ = "objectrest"
+__github_project_name__ = "objectrest"
+__author__ = "Nate Harris"
+__author_email__ = "n8gr8gbln@gmail.com"
+__github_username__ = "nwithan8"
+__copyright__ = "Copyright © YEARADDEDBYGITHUB - Nate Harris"
+__license__ = "GNU General Public License v3 (GPLv3)"
+__description__ = "A Python package to handle REST API requests, JSON parsing, and pydantic object generation."
+__keywords__ = [
+    "API",
+    "REST",
+    "objects",
+    "pydantic",
+    "JSON",
+    "requests",
+    "OAuth2",
+    "token",
+]
 
 with open("requirements.txt", 'r') as fh:
     REQUIREMENTS = fh.read().splitlines()
@@ -20,18 +39,18 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name=package_info.__title__,
+    name=__title__,
     packages=setuptools.find_packages(),
-    version=package_info.__version__,
-    license=package_info.__license__,
-    description=package_info.__description__,
+    version=__version__,
+    license=__license__,
+    description=__description__,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author=package_info.__author__,
-    author_email=package_info.__author_email__,
-    url=f'https://github.com/{package_info.__github_username__}/{package_info.__github_project_name__}',
-    download_url=f'https://github.com/{package_info.__github_username__}/{package_info.__github_project_name__}/archive/{package_info.__version__}.tar.gz',
-    keywords=package_info.__keywords__,
+    author=__author__,
+    author_email=__author_email__,
+    url=f'https://github.com/{__github_username__}/{__github_project_name__}',
+    download_url=f'https://github.com/{__github_username__}/{__github_project_name__}/archive/{__version__}.tar.gz',
+    keywords=__keywords__,
     install_requires=REQUIREMENTS,
     extras_require={
         "dev": DEV_REQUIREMENTS,
