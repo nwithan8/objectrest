@@ -1,5 +1,5 @@
 # ObjectREST
-[![PyPi](https://static.pepy.tech/personalized-badge/objectrest?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pypi.org/project/objectrest)
+[![PyPi](https://img.shields.io/pypi/dm/objectrest?color=green&label=PyPI&logo=pypi&logoColor=yellow&style=flat-square)](https://pypi.org/project/objectrest)
 [![License](https://img.shields.io/pypi/l/tautulli?color=orange&style=flat-square)](https://github.com/nwithan8/objectrest/blob/master/LICENSE)
 
 [![Tests](https://github.com/nwithan8/objectrest/workflows/Tests/badge.svg)](https://github.com/nwithan8/objectrest/actions?query=workflow%3ATests)
