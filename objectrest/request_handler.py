@@ -1,19 +1,21 @@
-from requests_oauthlib import OAuth2Session
-from requests.auth import HTTPBasicAuth
 from oauthlib.oauth2 import BackendApplicationClient
+from requests.auth import HTTPBasicAuth
+from requests_oauthlib import OAuth2Session
 
 import objectrest
 from objectrest import utils
-from objectrest.object_handler import *
 from objectrest.decorators import request_handler_request
+from objectrest.object_handler import *
 
 
 class RequestHandler:
-    def __init__(self,
-                 base_url: str = None,
-                 universal_parameters: dict = None,
-                 universal_headers: dict = None,
-                 log_requests: bool = False):
+    def __init__(
+        self,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        log_requests: bool = False,
+    ):
         """
         Create a reusable request handler
         Set universal parameters and headers used for all requests
@@ -86,7 +88,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return get(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return get(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def get_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -103,11 +107,20 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return get_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return get_json(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
-    def get_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                   use_proxy: bool = False, **kwargs) -> Union[object, None]:
+    def get_object(
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
+    ) -> Union[object, None]:
         """
         Parse the JSON data from a GET request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -127,8 +140,16 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return get_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                          use_proxy=use_proxy, log=self._log, **kwargs)
+        return get_object(
+            url=url,
+            model=model,
+            sub_keys=sub_keys,
+            extract_list=extract_list,
+            session=self._session,
+            use_proxy=use_proxy,
+            log=self._log,
+            **kwargs,
+        )
 
     @request_handler_request
     def options(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -145,7 +166,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return options(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return options(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def head(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -162,7 +185,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return head(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return head(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def post(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -179,7 +204,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return post(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return post(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def post_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -196,11 +223,20 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return post_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return post_json(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
-    def post_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                    use_proxy: bool = False, **kwargs) -> Union[object, None]:
+    def post_object(
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
+    ) -> Union[object, None]:
         """
         Parse the JSON data from a POST request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -220,8 +256,16 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return post_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                           use_proxy=use_proxy, log=self._log, **kwargs)
+        return post_object(
+            url=url,
+            model=model,
+            sub_keys=sub_keys,
+            extract_list=extract_list,
+            session=self._session,
+            use_proxy=use_proxy,
+            log=self._log,
+            **kwargs,
+        )
 
     @request_handler_request
     def put(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -238,7 +282,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return put(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return put(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def put_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -255,11 +301,20 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return put_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return put_json(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
-    def put_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                   use_proxy: bool = False, **kwargs) -> Union[object, None]:
+    def put_object(
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
+    ) -> Union[object, None]:
         """
         Parse the JSON data from a PUT request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -279,8 +334,16 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return put_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                          use_proxy=use_proxy, log=self._log, **kwargs)
+        return put_object(
+            url=url,
+            model=model,
+            sub_keys=sub_keys,
+            extract_list=extract_list,
+            session=self._session,
+            use_proxy=use_proxy,
+            log=self._log,
+            **kwargs,
+        )
 
     @request_handler_request
     def patch(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -297,7 +360,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return patch(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return patch(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def patch_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -314,11 +379,20 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return patch_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return patch_json(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
-    def patch_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                     use_proxy: bool = False, **kwargs) -> Union[object, None]:
+    def patch_object(
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
+    ) -> Union[object, None]:
         """
         Parse the JSON data from a PATCH request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -338,8 +412,16 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return patch_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                            use_proxy=use_proxy, log=self._log, **kwargs)
+        return patch_object(
+            url=url,
+            model=model,
+            sub_keys=sub_keys,
+            extract_list=extract_list,
+            session=self._session,
+            use_proxy=use_proxy,
+            log=self._log,
+            **kwargs,
+        )
 
     @request_handler_request
     def delete(self, url: str, use_proxy: bool = False, **kwargs) -> requests.Response:
@@ -356,7 +438,9 @@ class RequestHandler:
         :return: A Requests.Response object
         :rtype: requests.Response
         """
-        return delete(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return delete(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
     def delete_json(self, url: str, use_proxy: bool = False, **kwargs) -> dict:
@@ -373,11 +457,20 @@ class RequestHandler:
         :return: a JSON dictionary
         :rtype: dict
         """
-        return delete_json(url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs)
+        return delete_json(
+            url=url, session=self._session, use_proxy=use_proxy, log=self._log, **kwargs
+        )
 
     @request_handler_request
-    def delete_object(self, url: str, model: type, sub_keys: List = None, extract_list: bool = False,
-                      use_proxy: bool = False, **kwargs) -> Union[object, None]:
+    def delete_object(
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
+    ) -> Union[object, None]:
         """
         Parse the JSON data from a DELETE request into an object
         Automatically appends base URL, universal params and headers, reuses session
@@ -397,19 +490,29 @@ class RequestHandler:
         :return: an object
         :rtype: object
         """
-        return delete_object(url=url, model=model, sub_keys=sub_keys, extract_list=extract_list, session=self._session,
-                             use_proxy=use_proxy, log=self._log, **kwargs)
+        return delete_object(
+            url=url,
+            model=model,
+            sub_keys=sub_keys,
+            extract_list=extract_list,
+            session=self._session,
+            use_proxy=use_proxy,
+            log=self._log,
+            **kwargs,
+        )
 
 
 class ApiTokenRequestHandler(RequestHandler):
-    def __init__(self,
-                 api_token: str,
-                 api_token_keyword: str,
-                 base_url: str = None,
-                 universal_parameters: dict = None,
-                 universal_headers: dict = None,
-                 include_key_in_header: bool = False,
-                 log_requests: bool = False):
+    def __init__(
+        self,
+        api_token: str,
+        api_token_keyword: str,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        include_key_in_header: bool = False,
+        log_requests: bool = False,
+    ):
         """
         Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
@@ -442,18 +545,25 @@ class ApiTokenRequestHandler(RequestHandler):
         else:
             params[api_token_keyword] = api_token
 
-        super().__init__(base_url, universal_parameters=params, universal_headers=headers, log_requests=log_requests)
+        super().__init__(
+            base_url,
+            universal_parameters=params,
+            universal_headers=headers,
+            log_requests=log_requests,
+        )
 
 
 class OAuth2RequestHandler(RequestHandler):
-    def __init__(self,
-                 client_id: str,
-                 client_secret: str,
-                 authorization_url: str,
-                 base_url: str = None,
-                 universal_parameters: dict = None,
-                 universal_headers: dict = None,
-                 log_requests: bool = False):
+    def __init__(
+        self,
+        client_id: str,
+        client_secret: str,
+        authorization_url: str,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        log_requests: bool = False,
+    ):
         """
         Create a reusable request handler to handle requests requiring API tokens
         Set universal parameters and headers used for all requests
@@ -474,8 +584,12 @@ class OAuth2RequestHandler(RequestHandler):
         :param log_requests: whether to log the request (default False)
         :type log_requests: bool, optional
         """
-        super().__init__(base_url=base_url, universal_parameters=universal_parameters,
-                         universal_headers=universal_headers, log_requests=log_requests)
+        super().__init__(
+            base_url=base_url,
+            universal_parameters=universal_parameters,
+            universal_headers=universal_headers,
+            log_requests=log_requests,
+        )
         self._client_id = client_id
         self._client_secret = client_secret
         self._auth_url = authorization_url
@@ -507,15 +621,16 @@ class OAuth2RequestHandler(RequestHandler):
             self._authorize()
 
         # If access token has expired
-        access_token_expiration_timestamp = self._tokens.get('access_token_expires_in')
-        if not access_token_expiration_timestamp \
-                or utils.timestamp_is_expired(timestamp=access_token_expiration_timestamp):
+        access_token_expiration_timestamp = self._tokens.get("access_token_expires_in")
+        if not access_token_expiration_timestamp or utils.timestamp_is_expired(
+            timestamp=access_token_expiration_timestamp
+        ):
             self._authorize()
 
         if not self._tokens:
             raise Exception("Could not get tokens from the API.")
 
-        access_token = self._tokens.get('access_token')
+        access_token = self._tokens.get("access_token")
         if not access_token:
             raise Exception("No access token provided by the API.")
         return access_token
@@ -530,6 +645,6 @@ class OAuth2RequestHandler(RequestHandler):
         headers = super()._make_headers(local_headers=local_headers)
 
         access_token = self._get_access_token()
-        headers['Authorization'] = f"Bearer {access_token}"
+        headers["Authorization"] = f"Bearer {access_token}"
 
         return headers

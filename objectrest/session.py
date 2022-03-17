@@ -1,4 +1,5 @@
-from requests import Response, Session as RequestsSession
+from requests import Response
+from requests import Session as RequestsSession
 
 
 class Session:

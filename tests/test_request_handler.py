@@ -3,7 +3,6 @@ import logging
 import pytest
 
 import objectrest
-
 from tests.object import Object
 
 URL = "https://httpbin.org/anything"
@@ -16,7 +15,9 @@ HANDLER = objectrest.RequestHandler()
 def execute_before_any_test():
     logging.basicConfig(level=logging.DEBUG)
     global HANDLER
-    HANDLER = objectrest.RequestHandler(base_url=URL, universal_parameters=PARAMS, log_requests=True)
+    HANDLER = objectrest.RequestHandler(
+        base_url=URL, universal_parameters=PARAMS, log_requests=True
+    )
 
 
 def test_get():

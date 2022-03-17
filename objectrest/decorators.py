@@ -15,9 +15,9 @@ def request_handler_request(func):
         :return:
         :rtype:
         """
-        kwargs['url'] = self._make_url(local_url=kwargs.get('url'))
-        kwargs['params'] = self._make_params(local_params=kwargs.get('params'))
-        kwargs['headers'] = self._make_headers(local_headers=kwargs.get('headers'))
+        kwargs["url"] = self._make_url(local_url=kwargs.get("url"))
+        kwargs["params"] = self._make_params(local_params=kwargs.get("params"))
+        kwargs["headers"] = self._make_headers(local_headers=kwargs.get("headers"))
         return func(self, **kwargs)
 
     return wrapper
