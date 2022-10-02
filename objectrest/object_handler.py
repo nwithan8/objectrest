@@ -12,14 +12,11 @@ from objectrest.json_handler import (
     async_patch_json,
     async_delete_json,
 )
-from objectrest.session import (
-    Session,
-    AsyncSession
-)
+from objectrest.session import Session, AsyncSession
 
 
 def _create_object(
-        json_data: dict, model: type, sub_keys: List = None, extract_list: bool = False
+    json_data: dict, model: type, sub_keys: List = None, extract_list: bool = False
 ) -> Union[object, None]:
     """
     Parse JSON data into a Pydantic model
@@ -44,14 +41,14 @@ def _create_object(
 
 
 def get_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from a GET request into an object
@@ -84,14 +81,14 @@ def get_object(
 
 
 def post_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from a POST request into an object
@@ -124,14 +121,14 @@ def post_object(
 
 
 def put_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from a PUT request into an object
@@ -164,14 +161,14 @@ def put_object(
 
 
 def patch_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from a PATCH request into an object
@@ -204,14 +201,14 @@ def patch_object(
 
 
 def delete_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from a DELETE request into an object
@@ -247,14 +244,14 @@ def delete_object(
 
 
 async def async_get_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from an asynchronous GET request into an object
@@ -287,14 +284,14 @@ async def async_get_object(
 
 
 async def async_post_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from an asynchronous POST request into an object
@@ -327,14 +324,14 @@ async def async_post_object(
 
 
 async def async_put_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from an asynchronous PUT request into an object
@@ -367,14 +364,14 @@ async def async_put_object(
 
 
 async def async_patch_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from an asynchronous PATCH request into an object
@@ -407,14 +404,14 @@ async def async_patch_object(
 
 
 async def async_delete_object(
-        url: str,
-        model: type,
-        sub_keys: List = None,
-        extract_list: bool = False,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    model: type,
+    sub_keys: List = None,
+    extract_list: bool = False,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> Union[object, None]:
     """
     Parse the JSON data from an asynchronous DELETE request into an object

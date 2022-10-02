@@ -59,11 +59,11 @@ from objectrest.response import (
 
 class RequestHandler:
     def __init__(
-            self,
-            base_url: str = None,
-            universal_parameters: dict = None,
-            universal_headers: dict = None,
-            log_requests: bool = False,
+        self,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        log_requests: bool = False,
     ):
         """
         Create a reusable request handler
@@ -165,13 +165,13 @@ class RequestHandler:
 
     @request_handler_request
     def get_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from a GET request into an object
@@ -281,13 +281,13 @@ class RequestHandler:
 
     @request_handler_request
     def post_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from a POST request into an object
@@ -359,13 +359,13 @@ class RequestHandler:
 
     @request_handler_request
     def put_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from a PUT request into an object
@@ -437,13 +437,13 @@ class RequestHandler:
 
     @request_handler_request
     def patch_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from a PATCH request into an object
@@ -515,13 +515,13 @@ class RequestHandler:
 
     @request_handler_request
     def delete_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from a DELETE request into an object
@@ -557,7 +557,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_get(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous GET request
@@ -605,13 +605,13 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_get_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from an asynchronous GET request into an object
@@ -645,7 +645,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_options(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous OPTIONS request
@@ -670,7 +670,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_head(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous HEAD request
@@ -695,7 +695,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_post(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous POST request
@@ -720,7 +720,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_post_json(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> dict:
         """
         Return the JSON data from an asynchronous POST request
@@ -745,13 +745,13 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_post_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from an asynchronous POST request into an object
@@ -785,7 +785,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_put(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous PUT request
@@ -833,13 +833,13 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_put_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from an asynchronous PUT request into an object
@@ -873,7 +873,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_patch(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous PATCH request
@@ -898,7 +898,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_patch_json(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> dict:
         """
         Return the JSON data from an asynchronous PATCH request
@@ -923,13 +923,13 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_patch_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from an asynchronous PATCH request into an object
@@ -963,7 +963,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_delete(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> AsyncResponse:
         """
         Return the AsyncResponse object from an asynchronous DELETE request
@@ -988,7 +988,7 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_delete_json(
-            self, url: str, use_proxy: bool = False, **kwargs
+        self, url: str, use_proxy: bool = False, **kwargs
     ) -> dict:
         """
         Return the JSON data from an asynchronous DELETE request
@@ -1013,13 +1013,13 @@ class RequestHandler:
 
     @async_request_handler_request
     async def async_delete_object(
-            self,
-            url: str,
-            model: type,
-            sub_keys: List = None,
-            extract_list: bool = False,
-            use_proxy: bool = False,
-            **kwargs,
+        self,
+        url: str,
+        model: type,
+        sub_keys: List = None,
+        extract_list: bool = False,
+        use_proxy: bool = False,
+        **kwargs,
     ) -> Union[object, None]:
         """
         Parse the JSON data from an asynchronous DELETE request into an object
@@ -1054,14 +1054,14 @@ class RequestHandler:
 
 class ApiTokenRequestHandler(RequestHandler):
     def __init__(
-            self,
-            api_token: str,
-            api_token_keyword: str,
-            base_url: str = None,
-            universal_parameters: dict = None,
-            universal_headers: dict = None,
-            include_key_in_header: bool = False,
-            log_requests: bool = False,
+        self,
+        api_token: str,
+        api_token_keyword: str,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        include_key_in_header: bool = False,
+        log_requests: bool = False,
     ):
         """
         Create a reusable request handler to handle requests requiring API tokens
@@ -1105,14 +1105,14 @@ class ApiTokenRequestHandler(RequestHandler):
 
 class OAuth2RequestHandler(RequestHandler):
     def __init__(
-            self,
-            client_id: str,
-            client_secret: str,
-            authorization_url: str,
-            base_url: str = None,
-            universal_parameters: dict = None,
-            universal_headers: dict = None,
-            log_requests: bool = False,
+        self,
+        client_id: str,
+        client_secret: str,
+        authorization_url: str,
+        base_url: str = None,
+        universal_parameters: dict = None,
+        universal_headers: dict = None,
+        log_requests: bool = False,
     ):
         """
         Create a reusable request handler to handle requests requiring API tokens
@@ -1155,7 +1155,9 @@ class OAuth2RequestHandler(RequestHandler):
         :rtype:
         """
         auth: HTTPBasicAuth = HTTPBasicAuth(self._client_id, self._client_secret)
-        client: BackendApplicationClient = BackendApplicationClient(client_id=self._client_id)
+        client: BackendApplicationClient = BackendApplicationClient(
+            client_id=self._client_id
+        )
         oauth: OAuth2Session = OAuth2Session(client=client)
         return oauth.fetch_token(token_url=self._auth_url, auth=auth)
 
@@ -1171,9 +1173,11 @@ class OAuth2RequestHandler(RequestHandler):
             self._authorize()
 
         # If access token has expired
-        access_token_expiration_timestamp: str = self._tokens.get("access_token_expires_in")
+        access_token_expiration_timestamp: str = self._tokens.get(
+            "access_token_expires_in"
+        )
         if not access_token_expiration_timestamp or utils.timestamp_is_expired(
-                timestamp=access_token_expiration_timestamp
+            timestamp=access_token_expiration_timestamp
         ):
             self._authorize()
 

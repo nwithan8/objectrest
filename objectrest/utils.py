@@ -1,5 +1,5 @@
 import time
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import proxlist
 
@@ -14,9 +14,11 @@ def timestamp_is_expired(timestamp: str) -> bool:
 
 
 def get_proxy_dict(
-        country: Optional[str] = None, verified: bool = True
+    country: Optional[str] = None, verified: bool = True
 ) -> Union[dict, None]:
-    proxy: Union[str, None] = proxlist.random_proxy(country=country, google_verified=verified)
+    proxy: Union[str, None] = proxlist.random_proxy(
+        country=country, google_verified=verified
+    )
     if proxy:
         return {
             "http": f"http://{proxy}",

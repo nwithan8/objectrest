@@ -12,14 +12,8 @@ from objectrest.base_requests import (
     async_patch,
     async_delete,
 )
-from objectrest.session import (
-    Session,
-    AsyncSession
-)
-from objectrest.response import (
-    Response,
-    AsyncResponse
-)
+from objectrest.session import Session, AsyncSession
+from objectrest.response import Response, AsyncResponse
 
 
 def _parse_response_json(response: Union[Response, AsyncResponse] = None) -> dict:
@@ -44,11 +38,11 @@ def _parse_response_json(response: Union[Response, AsyncResponse] = None) -> dic
 
 
 def get_json(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from a GET request
@@ -66,16 +60,18 @@ def get_json(
     :return: a JSON dictionary
     :rtype: dict
     """
-    res: Response = get(url=url, session=session, use_proxy=use_proxy, log=log, **kwargs)
+    res: Response = get(
+        url=url, session=session, use_proxy=use_proxy, log=log, **kwargs
+    )
     return _parse_response_json(response=res)
 
 
 def post_json(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from a POST request
@@ -93,16 +89,18 @@ def post_json(
     :return: a JSON dictionary
     :rtype: dict
     """
-    res: Response = post(url=url, session=session, use_proxy=use_proxy, log=log, **kwargs)
+    res: Response = post(
+        url=url, session=session, use_proxy=use_proxy, log=log, **kwargs
+    )
     return _parse_response_json(response=res)
 
 
 def put_json(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from a PUT request
@@ -120,16 +118,18 @@ def put_json(
     :return: a JSON dictionary
     :rtype: dict
     """
-    res: Response = put(url=url, session=session, use_proxy=use_proxy, log=log, **kwargs)
+    res: Response = put(
+        url=url, session=session, use_proxy=use_proxy, log=log, **kwargs
+    )
     return _parse_response_json(response=res)
 
 
 def patch_json(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from a PATCH request
@@ -147,16 +147,18 @@ def patch_json(
     :return: a JSON dictionary
     :rtype: dict
     """
-    res: Response = patch(url=url, session=session, use_proxy=use_proxy, log=log, **kwargs)
+    res: Response = patch(
+        url=url, session=session, use_proxy=use_proxy, log=log, **kwargs
+    )
     return _parse_response_json(response=res)
 
 
 def delete_json(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from a DELETE request
@@ -174,7 +176,9 @@ def delete_json(
     :return: a JSON dictionary
     :rtype: dict
     """
-    res: Response = delete(url=url, session=session, use_proxy=use_proxy, log=log, **kwargs)
+    res: Response = delete(
+        url=url, session=session, use_proxy=use_proxy, log=log, **kwargs
+    )
     return _parse_response_json(response=res)
 
 
@@ -182,11 +186,11 @@ def delete_json(
 
 
 async def async_get_json(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from an asynchronous GET request
@@ -211,11 +215,11 @@ async def async_get_json(
 
 
 async def async_post_json(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from an asynchronous POST request
@@ -240,11 +244,11 @@ async def async_post_json(
 
 
 async def async_put_json(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from an asynchronous PUT request
@@ -269,11 +273,11 @@ async def async_put_json(
 
 
 async def async_patch_json(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from an asynchronous PATCH request
@@ -298,11 +302,11 @@ async def async_patch_json(
 
 
 async def async_delete_json(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs
 ) -> dict:
     """
     Return the JSON data from an asynchronous DELETE request

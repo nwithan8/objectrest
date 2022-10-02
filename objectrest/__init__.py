@@ -39,6 +39,7 @@ from objectrest.request_handler import (
     async_put_object,
 )
 from objectrest.session import Session, AsyncSession
+from objectrest.response import Response, AsyncResponse
 
 __all__ = [
     "get",
@@ -80,4 +81,6 @@ __all__ = [
     "OAuth2RequestHandler",
     "Session",
     "AsyncSession",
+    "Response",
+    "AsyncResponse",
 ]

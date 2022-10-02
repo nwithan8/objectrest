@@ -1,6 +1,7 @@
-from objectrest.response import Response, AsyncResponse
 from requests import Session as RequestsSession
-from httpx import Client as HTTPXClient
+from httpx import AsyncClient as HTTPXClient
+
+from objectrest.response import Response, AsyncResponse
 
 
 class Session:

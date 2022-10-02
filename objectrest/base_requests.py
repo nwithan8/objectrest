@@ -37,12 +37,12 @@ def _add_params(use_proxy: bool = False, **kwargs) -> dict:
 
 
 def _make_request(
-        request_type: RequestType,
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    request_type: RequestType,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     kwargs: dict = _add_params(use_proxy=use_proxy, **kwargs)
     if log:
@@ -59,11 +59,11 @@ def _make_request(
 
 
 def get(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a GET request
@@ -92,11 +92,11 @@ def get(
 
 
 def options(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from an OPTIONS request
@@ -125,11 +125,11 @@ def options(
 
 
 def head(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a HEAD request
@@ -158,11 +158,11 @@ def head(
 
 
 def post(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a POST request
@@ -191,11 +191,11 @@ def post(
 
 
 def put(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a PUT request
@@ -224,11 +224,11 @@ def put(
 
 
 def patch(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a PATCH request
@@ -257,11 +257,11 @@ def patch(
 
 
 def delete(
-        url: str,
-        session: Session = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: Session = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> Response:
     """
     Return the Response object from a DELETE request
@@ -293,12 +293,12 @@ def delete(
 
 
 async def _async_make_request(
-        request_type: RequestType,
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    request_type: RequestType,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     kwargs: dict = _add_params(use_proxy=use_proxy, **kwargs)
     if log:
@@ -307,8 +307,9 @@ async def _async_make_request(
     if not session:
         session: AsyncSession = AsyncSession()
 
-    async with session:
-        res: AsyncResponse = await session.request(method=request_type.str_value, url=url, **kwargs)
+    res: AsyncResponse = await session.request(
+        method=request_type.str_value, url=url, **kwargs
+    )
 
     if log:
         logging.info(f"Response: {res}") if res else logging.error(f"Response: {res}")
@@ -316,11 +317,11 @@ async def _async_make_request(
 
 
 async def async_get(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous GET request
@@ -349,11 +350,11 @@ async def async_get(
 
 
 async def async_options(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous OPTIONS request
@@ -382,11 +383,11 @@ async def async_options(
 
 
 async def async_head(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous HEAD request
@@ -415,11 +416,11 @@ async def async_head(
 
 
 async def async_post(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous POST request
@@ -448,11 +449,11 @@ async def async_post(
 
 
 async def async_put(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous PUT request
@@ -481,11 +482,11 @@ async def async_put(
 
 
 async def async_patch(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous PATCH request
@@ -514,11 +515,11 @@ async def async_patch(
 
 
 async def async_delete(
-        url: str,
-        session: AsyncSession = None,
-        use_proxy: bool = False,
-        log: bool = False,
-        **kwargs,
+    url: str,
+    session: AsyncSession = None,
+    use_proxy: bool = False,
+    log: bool = False,
+    **kwargs,
 ) -> AsyncResponse:
     """
     Return the AsyncResponse object from an asynchronous DELETE request

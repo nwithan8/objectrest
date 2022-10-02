@@ -17,13 +17,15 @@ def request_handler_request(func):
         """
         kwargs["url"]: str = self._make_url(local_url=kwargs.get("url"))
         kwargs["params"]: dict = self._make_params(local_params=kwargs.get("params"))
-        kwargs["headers"]: dict = self._make_headers(local_headers=kwargs.get("headers"))
+        kwargs["headers"]: dict = self._make_headers(
+            local_headers=kwargs.get("headers")
+        )
         return func(self, **kwargs)
 
     return wrapper
 
 
-async def async_request_handler_request(func):
+def async_request_handler_request(func):
     @wraps(func)
     async def wrapper(self, **kwargs) -> Union[dict, object]:
         """
@@ -38,7 +40,9 @@ async def async_request_handler_request(func):
         """
         kwargs["url"]: str = self._make_url(local_url=kwargs.get("url"))
         kwargs["params"]: dict = self._make_params(local_params=kwargs.get("params"))
-        kwargs["headers"]: dict = self._make_headers(local_headers=kwargs.get("headers"))
+        kwargs["headers"]: dict = self._make_headers(
+            local_headers=kwargs.get("headers")
+        )
         return await func(self, **kwargs)
 
     return wrapper
