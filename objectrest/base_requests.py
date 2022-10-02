@@ -1,9 +1,9 @@
 import logging
 from enum import Enum
+from typing import Union
 
-import requests
-
-from objectrest.session import Session
+from objectrest.session import Session, AsyncSession
+from objectrest.response import Response, AsyncResponse
 from objectrest.utils import get_proxy_dict
 
 
@@ -16,50 +16,42 @@ class RequestType(Enum):
     HEAD = "HEAD"
     PATCH = "PATCH"
 
+    def __str__(self) -> str:
+        return self.str_value
+
+    @property
+    def str_value(self) -> str:
+        return str(self.value)
+
 
 def _add_params(use_proxy: bool = False, **kwargs) -> dict:
     if use_proxy:
-        proxy_dict = get_proxy_dict()
+        proxy_dict: Union[dict, None] = get_proxy_dict()
         if not proxy_dict:
             raise Exception("No proxies available")
-        kwargs["proxies"] = proxy_dict
+        kwargs["proxies"]: dict = proxy_dict
     return kwargs
 
 
+# Synchronous requests
+
+
 def _make_request(
-    request_type: RequestType,
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
-    kwargs = _add_params(use_proxy=use_proxy, **kwargs)
+        request_type: RequestType,
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
+    kwargs: dict = _add_params(use_proxy=use_proxy, **kwargs)
     if log:
         logging.info(f"{request_type.value} {url}")
 
-    if request_type == RequestType.GET:
-        res = session.get(url, **kwargs) if session else requests.get(url, **kwargs)
-    elif request_type == RequestType.POST:
-        res = session.post(url, **kwargs) if session else requests.post(url, **kwargs)
-    elif request_type == RequestType.PUT:
-        res = session.put(url, **kwargs) if session else requests.put(url, **kwargs)
-    elif request_type == RequestType.DELETE:
-        res = (
-            session.delete(url, **kwargs) if session else requests.delete(url, **kwargs)
-        )
-    elif request_type == RequestType.OPTIONS:
-        res = (
-            session.options(url, **kwargs)
-            if session
-            else requests.options(url, **kwargs)
-        )
-    elif request_type == RequestType.HEAD:
-        res = session.head(url, **kwargs) if session else requests.head(url, **kwargs)
-    elif request_type == RequestType.PATCH:
-        res = session.patch(url, **kwargs) if session else requests.patch(url, **kwargs)
-    else:
-        raise Exception(f"Invalid request type: {request_type}")
+    if not session:
+        session: Session = Session()
+
+    res: Response = session.request(method=request_type.str_value, url=url, **kwargs)
 
     if log:
         logging.info(f"Response: {res}") if res else logging.error(f"Response: {res}")
@@ -67,14 +59,14 @@ def _make_request(
 
 
 def get(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a GET request
+    Return the Response object from a GET request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -84,10 +76,10 @@ def get(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.GET,
@@ -100,14 +92,14 @@ def get(
 
 
 def options(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from an OPTIONS request
+    Return the Response object from an OPTIONS request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -117,10 +109,10 @@ def options(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.OPTIONS,
@@ -133,14 +125,14 @@ def options(
 
 
 def head(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a HEAD request
+    Return the Response object from a HEAD request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -150,10 +142,10 @@ def head(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.HEAD,
@@ -166,14 +158,14 @@ def head(
 
 
 def post(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a POST request
+    Return the Response object from a POST request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -183,10 +175,10 @@ def post(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.POST,
@@ -199,14 +191,14 @@ def post(
 
 
 def put(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a PUT request
+    Return the Response object from a PUT request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -216,10 +208,10 @@ def put(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.PUT,
@@ -232,14 +224,14 @@ def put(
 
 
 def patch(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a PATCH request
+    Return the Response object from a PATCH request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -249,10 +241,10 @@ def patch(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
         request_type=RequestType.PATCH,
@@ -265,14 +257,14 @@ def patch(
 
 
 def delete(
-    url: str,
-    session: Session = None,
-    use_proxy: bool = False,
-    log: bool = False,
-    **kwargs,
-) -> requests.Response:
+        url: str,
+        session: Session = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> Response:
     """
-    Return the requests.Response object from a DELETE request
+    Return the Response object from a DELETE request
 
     :param url: URL endpoint to append to base URL
     :type url: str
@@ -282,12 +274,269 @@ def delete(
     :type use_proxy: bool, optional
     :param log: whether to log the request (default False)
     :type log: bool, optional
-    :param kwargs: Keyword arguments to pass to Requests library
+    :param kwargs: Keyword arguments to pass to the Requests library
     :type kwargs: dict, optional
-    :return: a requests.Response object
-    :rtype: requests.Response
+    :return: a Response object
+    :rtype: Response
     """
     return _make_request(
+        request_type=RequestType.DELETE,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+# Asynchronous requests
+
+
+async def _async_make_request(
+        request_type: RequestType,
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    kwargs: dict = _add_params(use_proxy=use_proxy, **kwargs)
+    if log:
+        logging.info(f"{request_type.value} {url}")
+
+    if not session:
+        session: AsyncSession = AsyncSession()
+
+    async with session:
+        res: AsyncResponse = await session.request(method=request_type.str_value, url=url, **kwargs)
+
+    if log:
+        logging.info(f"Response: {res}") if res else logging.error(f"Response: {res}")
+    return res
+
+
+async def async_get(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous GET request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.GET,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_options(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous OPTIONS request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.OPTIONS,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_head(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous HEAD request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.HEAD,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_post(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous POST request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.POST,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_put(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous PUT request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.PUT,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_patch(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous PATCH request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
+        request_type=RequestType.PATCH,
+        url=url,
+        session=session,
+        use_proxy=use_proxy,
+        log=log,
+        **kwargs,
+    )
+
+
+async def async_delete(
+        url: str,
+        session: AsyncSession = None,
+        use_proxy: bool = False,
+        log: bool = False,
+        **kwargs,
+) -> AsyncResponse:
+    """
+    Return the AsyncResponse object from an asynchronous DELETE request
+
+    :param url: URL endpoint to append to base URL
+    :type url: str
+    :param session: an objectrest.AsyncSession to use for the API call (optional)
+    :type session: objectrest.AsyncSession, optional
+    :param use_proxy: whether to use a random proxy for your request (default False)
+    :type use_proxy: bool, optional
+    :param log: whether to log the request (default False)
+    :type log: bool, optional
+    :param kwargs: Keyword arguments to pass to the HTTPX library
+    :type kwargs: dict, optional
+    :return: an AsyncResponse object
+    :rtype: AsyncResponse
+    """
+    return await _async_make_request(
         request_type=RequestType.DELETE,
         url=url,
         session=session,
